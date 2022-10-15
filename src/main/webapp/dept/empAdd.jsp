@@ -1,4 +1,6 @@
-<!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <html class="no-js">
 
 <head>
@@ -16,7 +18,7 @@
     <link rel="stylesheet" href="../amazeui/css/admin.css">
     <link rel="stylesheet" href="../amazeui/plugin/amazeui.cropper.css">
     <link rel="stylesheet" href="../amazeui/plugin/custom_up_img.css">
-    <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../css/default.css" />
     <script src="../static/js/jquery-3.5.1.js"></script>
     <script src="../amazeui/js/amazeui.js"></script>
     <script src="../amazeui/js/app.js"></script>
@@ -82,10 +84,10 @@
                 </li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
+                        <span class="am-icon-users"></span> 管理员:${sessionScope.loginName} <span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li><a href="userInfo.html"><span class="am-icon-user"></span> 个人资料</a></li>
+                        <li><a href="userInfo.jsp"><span class="am-icon-user"></span> 个人资料</a></li>
                         <li><a href="" class="exit"><span class="am-icon-power-off"></span> 退出</a></li>
                         <script>
                             $('.exit').click(function () {
@@ -97,7 +99,7 @@
                         </script>
                     </ul>
                 </li>
-                <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"></a></li>
+                <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"> </a></li>
             </ul>
         </div>
     </header>
@@ -107,7 +109,7 @@
             <div class="am-offcanvas-bar admin-offcanvas-bar">
                 <ul class="am-list admin-sidebar-list">
                     <li>
-                      <a href="/java_thesis_project/exitServlet">
+                      <a href="index.html">
                         <span class="am-icon-home"></span> 
                         首页
                       </a>
@@ -120,14 +122,14 @@
                         </a>
                         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
                             <li>
-                              <a href="deptManage.html" class="am-cf">
+                              <a href="deptManage.jsp" class="am-cf">
                                 <span class="am-icon-check"></span> 
                                 部门管理
                                 <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
                               </a>
                             </li>
                             <li>
-                              <a href="empManage.html">
+                              <a href="empManage.jsp">
                                 <span class="am-icon-puzzle-piece"></span> 
                                 员工管理
                               </a>
@@ -142,7 +144,7 @@
                         </a>
                         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="userInfo">
                             <li>
-                              <a href="userInfo.html" class="am-cf">
+                              <a href="userInfo.jsp" class="am-cf">
                                 <span class="am-icon-check"></span> 
                                 个人信息
                               </a>
@@ -168,9 +170,10 @@
         <div class="admin-content">
             <div class="admin-content-body">
                 <div class="am-cf am-padding am-padding-bottom-0">
-                    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">个人信息</strong> / <small>Personal Information</small></div>
+                    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">员工信息添加</strong> / <small>Employee Information Add</small></div>
                 </div>
                 <hr/>
+                
 
                 <div class="am-g">
                     
@@ -197,7 +200,7 @@
 
 
                     <div class="am-u-sm-12 am-u-md-6 am-u-md-pull-6">
-                        <form class="am-form am-form-horizontal">
+                        <form method="post" action="empManage.jsp" class="am-form am-form-horizontal">
                             <div class="am-form-group">
                                 <div class="am-u-sm-11">
                                     <input type="text" id="user-name" placeholder="姓名 / Name">
@@ -206,46 +209,80 @@
                             </div>
                             <div class="am-form-group">
                                 <div class="am-u-sm-11">
-                                    <input type="email" id="user-email" placeholder="输入你的电子邮件 / Email">
-                                    <small>邮箱你懂得..</small>
+                                	<select>
+	                               		<option>21</option>
+	                               		<option>22</option>
+	                               		<option>23</option>
+	                               		<option>24</option>
+	                               		<option>25</option>
+                                	</select>
+                                    <small>年龄</small>
                                 </div>
                             </div>
                             <div class="am-form-group">
                                 <div class="am-u-sm-11">
-                                    <input type="tel" id="user-phone" placeholder="输入你的电话号码 / Telephone">
+                                	<span>爱好</span>
+                                	<input id="code" type="checkbox" name="hobby" value="写代码">
+                                	<label for="code">写代码</label>
+                                	<input id="bug" type="checkbox" name="hobby" value="写bug">
+                                	<label for="bug">写bug</label>
+                                	<input id="girl" type="checkbox" name="hobby" value="撩妹">
+                                	<label for="girl">撩妹</label>
                                 </div>
                             </div>
                             <div class="am-form-group">
                                 <div class="am-u-sm-11">
-                                    <input type="number" pattern="[0-9]*" id="user-QQ" placeholder="输入你的QQ号码">
+                                	<span>性别</span>
+                                	<input id="m" type="radio" name="hobby" value="男">
+                                	<label for="m">男</label>
+                                	<input id="f" type="radio" name="hobby" value="女">
+                                	<label for="f">女</label>
                                 </div>
                             </div>
                             <div class="am-form-group">
                                 <div class="am-u-sm-11">
-                                    <input type="text" id="user-weibo" placeholder="输入你的微博 / Twitter">
+                                    <input type="date" id="user-weibo" placeholder="入职日期">
+                                	<small>入职日期</small>
                                 </div>
                             </div>
                             <div class="am-form-group">
                                 <div class="am-u-sm-11">
-                                    <textarea class="" rows="5" id="user-intro" placeholder="输入个人简介" style="resize: none"></textarea>
+                                	<select>
+	                               		<option value="1">人事部</option>
+	                               		<option value="1">后勤部</option>
+	                               		<option value="1">事业部</option>
+	                               		<option value="1">财务部</option>
+                                	</select>
+                                    <small>所在部门</small>
+                                </div>
+                            </div>
+                            <div class="am-form-group">
+                                <div class="am-u-sm-11">
+                                    <textarea class="" rows="5" id="user-intro" placeholder="输入个人简介"></textarea>
                                     <small>250字以内写出你的一生..</small>
                                 </div>
                             </div>
                             <div class="am-form-group">
                                 <div class="am-u-sm-11 am-u-sm-push-3">
-                                    <button type="button" class="am-btn am-btn-primary">保存修改</button>
+                                    <button type="submit" class="am-btn am-btn-primary">保存</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-
+            <footer class="admin-content-footer">
+                <hr>
+                <p class="am-padding-left">&copy; 2017 Designed by yxq</p>
+            </footer>
         </div>
         <!-- content end -->
     </div>
     <a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
-
+    <footer>
+        <hr>
+        <p class="am-padding-left">&copy; 2017 Designed by yxq</p>
+    </footer>
 
 
 

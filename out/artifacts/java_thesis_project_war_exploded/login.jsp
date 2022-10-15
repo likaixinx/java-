@@ -139,7 +139,7 @@
 
                                 }else {
 
-                                    location.href="/java_thesis_project/dept/deptManage.html"
+                                    location.href="dept/deptManage.jsp"
                                 }
                             }
                         }

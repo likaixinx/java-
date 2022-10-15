@@ -1,4 +1,6 @@
-<!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <html class="no-js">
 
 <head>
@@ -16,7 +18,7 @@
     <link rel="stylesheet" href="../amazeui/css/admin.css">
     <link rel="stylesheet" href="../amazeui/plugin/amazeui.cropper.css">
     <link rel="stylesheet" href="../amazeui/plugin/custom_up_img.css">
-    <link rel="stylesheet" href="../css/default.css" />
+    <link rel="stylesheet" href="../css/default.css"/>
     <script src="../static/js/jquery-3.5.1.js"></script>
     <script src="../amazeui/js/amazeui.js"></script>
     <script src="../amazeui/js/app.js"></script>
@@ -82,10 +84,10 @@
                 </li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
+                        <span class="am-icon-users"></span> 管理员:${sessionScope.loginName} <span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li><a href="userInfo.html"><span class="am-icon-user"></span> 个人资料</a></li>
+                        <li><a href="userInfo.jsp"><span class="am-icon-user"></span> 个人资料</a></li>
                         <li><a href="" class="exit"><span class="am-icon-power-off"></span> 退出</a></li>
                         <script>
                             $('.exit').click(function () {
@@ -120,14 +122,14 @@
                         </a>
                         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
                             <li>
-                              <a href="deptManage.html" class="am-cf">
+                              <a href="deptManage.jsp" class="am-cf">
                                 <span class="am-icon-check"></span> 
                                 部门管理
                                 <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
                               </a>
                             </li>
                             <li>
-                              <a href="empManage.html">
+                              <a href="empManage.jsp">
                                 <span class="am-icon-puzzle-piece"></span> 
                                 员工管理
                               </a>
@@ -142,7 +144,7 @@
                         </a>
                         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="userInfo">
                             <li>
-                              <a href="userInfo.html" class="am-cf">
+                              <a href="userInfo.jsp" class="am-cf">
                                 <span class="am-icon-check"></span> 
                                 个人信息
                               </a>
@@ -168,7 +170,7 @@
         <div class="admin-content">
             <div class="admin-content-body">
                 <div class="am-cf am-padding am-padding-bottom-0">
-                    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">员工信息添加</strong> / <small>Employee Information Add</small></div>
+                    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">员工信息修改</strong> / <small>Employee Information Modify</small></div>
                 </div>
                 <hr/>
                 
@@ -198,7 +200,8 @@
 
 
                     <div class="am-u-sm-12 am-u-md-6 am-u-md-pull-6">
-                        <form method="post" action="empManage.html" class="am-form am-form-horizontal">
+                        <form method="post" action="empManage.jsp" class="am-form am-form-horizontal">
+                            <input type="hidden" name="id" readonly="readonly">
                             <div class="am-form-group">
                                 <div class="am-u-sm-11">
                                     <input type="text" id="user-name" placeholder="姓名 / Name">
@@ -262,17 +265,14 @@
                             </div>
                             <div class="am-form-group">
                                 <div class="am-u-sm-11 am-u-sm-push-3">
-                                    <button type="submit" class="am-btn am-btn-primary">保存</button>
+                                    <button type="submit" class="am-btn am-btn-primary">修改</button>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
-            <footer class="admin-content-footer">
-                <hr>
-                <p class="am-padding-left">&copy; 2017 Designed by yxq</p>
-            </footer>
+
         </div>
         <!-- content end -->
     </div>
@@ -321,8 +321,6 @@
         </div>
       </div>
     </div>
-
-
 
 
 

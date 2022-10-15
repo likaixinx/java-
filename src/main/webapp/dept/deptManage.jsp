@@ -1,4 +1,6 @@
-<!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <html class="no-js">
 <head>
   <meta charset="utf-8">
@@ -107,10 +109,10 @@
                 </li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
+                        <span class="am-icon-users"></span> 管理员:${sessionScope.loginName} <span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li><a href="userInfo.html"><span class="am-icon-user"></span> 个人资料</a></li>
+                        <li><a href="userInfo.jsp"><span class="am-icon-user"></span> 个人资料</a></li>
                         <li><a href="" class="exit"><span class="am-icon-power-off"></span> 退出</a></li>
                               <script>
                                   $('.exit').click(function () {
@@ -145,20 +147,20 @@
                         </a>
                         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
                             <li>
-                              <a href="deptManage.html" class="am-cf">
+                              <a href="deptManage.jsp" class="am-cf">
                                 <span class="am-icon-check"></span> 
                                 部门管理
                                 <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
                               </a>
                             </li>
                             <li>
-                              <a href="empManage.html">
+                              <a href="empManage.jsp">
                                 <span class="am-icon-puzzle-piece"></span> 
                                 员工管理
                               </a>
                             </li>
                             <li>
-                              <a href="empManage.html">
+                              <a href="empManage.jsp">
                                 <span class="am-icon-puzzle-piece"></span>
                                 员工工资管理
                               </a>
@@ -173,7 +175,7 @@
                         </a>
                         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="userInfo">
                             <li>
-                              <a href="userInfo.html" class="am-cf">
+                              <a href="userInfo.jsp" class="am-cf">
                                 <span class="am-icon-check"></span> 
                                 个人信息
                               </a>

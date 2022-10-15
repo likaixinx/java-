@@ -1,9 +1,11 @@
-<!doctype html>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page isELIgnored="false" %>
 <html class="no-js">
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>部门管理</title>
+  <title>Amaze UI Admin table Examples</title>
   <meta name="description" content="这是一个 table 页面">
   <meta name="keywords" content="table">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,28 +17,20 @@
   <meta name="apple-mobile-web-app-title" content="Amaze UI" />
   <link rel="stylesheet" href="../amazeui/css/amazeui.min.css" />
   <link rel="stylesheet" href="../amazeui/css/admin.css">
-  <link rel="stylesheet" href="../css/default.css">
+
     <script src="../static/js/jquery-3.5.1.js"></script>
     <script src="../amazeui/js/amazeui.js"></script>
     <script src="../amazeui/js/app.js"></script>
-
 	<script type="text/javascript">
-		function openModDlg(id){
-			$("#deptModDlg input[name=id]").val(id);
-			$("#deptModDlg").modal({});
-		}
-		
-		
-		function crmDelete(id){
+		function crmDelete(id)
+		{
 	      $('#my-confirm').modal({
 	        relatedTarget: this,
 	        onConfirm: function(options) {
-	         	// 访问删除的action
-	         	var url = "/dept/delete.do?id=" + id;
 	         	
 	        },
 	        onCancel: function() {
-	         // alert('');
+	          alert('算求，不弄了');
 	        }
 	      });
 		}
@@ -47,10 +41,9 @@
 
     <header class="am-topbar am-topbar-inverse admin-header">
         <div class="am-topbar-brand">
-            <strong>员工信息</strong> <small>后台管理</small>
+            <strong>ITANY-MIS</strong> <small>后台管理</small>
         </div>
         <span id="box" style="width: 320px;position: absolute;left: 550px;color: #000;font-size: 18px;font-weight: bold;line-height:50px"></span>
-
         <script>
             let box = document.getElementById('box')
 
@@ -93,10 +86,6 @@
             // 让定时器每间隔一秒就执行一次setTime这个方法（这是实现时钟的核心）
             setInterval(setTime, 1000)
         </script>
-
-
-
-
         <button class="am-topbar-btn am-topbar-toggle am-btn am-btn-sm am-btn-success am-show-sm-only" data-am-collapse="{target: '#topbar-collapse'}"><span class="am-sr-only">导航切换</span> <span class="am-icon-bars"></span></button>
         <div class="am-collapse am-topbar-collapse" id="topbar-collapse" >
             <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
@@ -107,19 +96,19 @@
                 </li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        <span class="am-icon-users"></span> 管理员 <span class="am-icon-caret-down"></span>
+                        <span class="am-icon-users"></span> 管理员:${sessionScope.loginName} <span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
-                        <li><a href="userInfo.html"><span class="am-icon-user"></span> 个人资料</a></li>
+                        <li><a href="userInfo.jsp"><span class="am-icon-user"></span> 个人资料</a></li>
                         <li><a href="" class="exit"><span class="am-icon-power-off"></span> 退出</a></li>
-                              <script>
-                                  $('.exit').click(function () {
-                                      $.get('/java_thesis_project/exitServlet',{},function () {
-                                          location.href='../login.jsp'
-                                      })
-                                  })
+                        <script>
+                            $('.exit').click(function () {
+                                $.get('/java_thesis_project/exitServlet',{},function () {
+                                    location.href='../login.jsp'
+                                })
+                            })
 
-                              </script>
+                        </script>
                     </ul>
                 </li>
                 <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"></a></li>
@@ -132,7 +121,7 @@
             <div class="am-offcanvas-bar admin-offcanvas-bar">
                 <ul class="am-list admin-sidebar-list">
                     <li>
-                      <a href="login.html">
+                      <a href="index.html">
                         <span class="am-icon-home"></span> 
                         首页
                       </a>
@@ -145,22 +134,16 @@
                         </a>
                         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="collapse-nav">
                             <li>
-                              <a href="deptManage.html" class="am-cf">
+                              <a href="deptManage.jsp" class="am-cf">
                                 <span class="am-icon-check"></span> 
                                 部门管理
                                 <span class="am-icon-star am-fr am-margin-right admin-icon-yellow"></span>
                               </a>
                             </li>
                             <li>
-                              <a href="empManage.html">
+                              <a href="empManage.jsp">
                                 <span class="am-icon-puzzle-piece"></span> 
                                 员工管理
-                              </a>
-                            </li>
-                            <li>
-                              <a href="empManage.html">
-                                <span class="am-icon-puzzle-piece"></span>
-                                员工工资管理
                               </a>
                             </li>
                         </ul>
@@ -173,7 +156,7 @@
                         </a>
                         <ul class="am-list am-collapse admin-sidebar-sub am-in" id="userInfo">
                             <li>
-                              <a href="userInfo.html" class="am-cf">
+                              <a href="userInfo.jsp" class="am-cf">
                                 <span class="am-icon-check"></span> 
                                 个人信息
                               </a>
@@ -200,7 +183,7 @@
   <div class="admin-content">
     <div class="admin-content-body">
       <div class="am-cf am-padding am-padding-bottom-0">
-        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">部门管理</strong> / <small>Department Manage</small></div>
+        <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">员工管理</strong> / <small>Employee Manage</small></div>
       </div>
 
       <hr>
@@ -209,7 +192,9 @@
         <div class="am-u-sm-12 am-u-md-6">
           <div class="am-btn-toolbar">
             <div class="am-btn-group am-btn-group-xs">
-              <button data-am-modal="{target:'#deptAddDlg'}" type="button" class="am-btn am-btn-default"><span class="am-icon-plus"></span>添加部门</button>
+              <a href="empAdd.jsp" type="button" class="am-btn am-btn-default">
+              	<span class="am-icon-plus"></span>添加员工
+              </a>
             </div>
           </div>
         </div>
@@ -225,6 +210,8 @@
 
       <div class="am-g">
         <div class="am-u-sm-12">
+        	<!-- form  action的默认值是浏览器地址栏 -->
+<!--           <form action="#abc" class="am-form"> -->
             <table class="am-table am-table-striped am-table-hover table-main">
               <thead>
                 <tr>
@@ -232,78 +219,37 @@
                     <input type="checkbox" />
                   </th>
                   <th class="table-id">ID</th>
-                  <th class="table-title">部门名称</th>
-                  <th class="table-type">部门地址</th>
+                  <th class="table-id">姓名</th>
+                  <th class="table-id">年龄</th>
+                  <th class="table-id">爱好</th>
+                  <th class="table-id">简介</th>
+                  <th class="table-id">性别</th>
+                  <th class="table-title">入职日期</th>
+                  <th class="table-author am-hide-sm-only">所在部门</th>
                   <th class="table-set">操作</th>
                 </tr>
               </thead>
               <tbody>
-                  <tr>
-                    <td><input type="checkbox" /></td>
-                    <td>1</td>
-                    <td><a href="#">人事部</a></td>
-                    <td>3幢1层306</td>
+              		<tr>
+	                  <th class="table-check">
+	                    <input type="checkbox" />
+	                  </th>
+	                  <td class="table-id">ID</td>
+	                  <td class="table-id">姓名</td>
+	                  <td class="table-id">年龄</td>
+	                  <td class="table-id">爱好</td>
+	                  <td class="table-id">简介</td>
+	                  <td class="table-id">性别</td>
+	                  <td class="table-title">入职日期</td>
+	                  <td class="table-author am-hide-sm-only">所在部门</td>
                     <td>
                       <div class="am-btn-toolbar">
                         <div class="am-btn-group am-btn-group-xs">
-                          <button onclick="openModDlg(99)" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                          <a href="empModify.jsp" class="am-btn am-btn-default am-btn-xs am-text-secondary">
                               <span class="am-icon-pencil-square-o"></span> 编辑
-                          </button>
-                          <button onclick="crmDelete(11)" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                              <span  class="am-icon-trash-o"></span> 删除
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" /></td>
-                    <td>1</td>
-                    <td><a href="#">人事部</a></td>
-                    <td>3幢1层306</td>
-                    <td>
-                      <div class="am-btn-toolbar">
-                        <div class="am-btn-group am-btn-group-xs">
-                          <button class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="openModDlg(99)">
-                              <span class="am-icon-pencil-square-o"></span> 编辑
-                          </button>
-                          <button  onclick="crmDelete(11)" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                              <span class="am-icon-trash-o"></span> 删除
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" /></td>
-                    <td>1</td>
-                    <td><a href="#">人事部</a></td>
-                    <td>3幢1层306</td>
-                    <td>
-                      <div class="am-btn-toolbar">
-                        <div class="am-btn-group am-btn-group-xs">
-                          <button class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="openModDlg(99)">
-                              <span class="am-icon-pencil-square-o"></span> 编辑
-                          </button>
-                          <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" onclick="crmDelete(11)">
-                              <span class="am-icon-trash-o"></span> 删除
-                          </button>
-                        </div>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><input type="checkbox" /></td>
-                    <td>1</td>
-                    <td><a href="#">人事部</a></td>
-                    <td>3幢1层306</td>
-                    <td>
-                      <div class="am-btn-toolbar">
-                        <div class="am-btn-group am-btn-group-xs">
-                          <button class="am-btn am-btn-default  am-btn-xs am-text-secondary" onclick="openModDlg()">
-                              <span class="am-icon-pencil-square-o"></span> 编辑
-                          </button>
-                          <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" onclick="crmDelete()">
+                          </a>
+                          <!-- button默认类型是submit -->
+                          <button type="button" onclick="crmDelete(11)" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
                               <span class="am-icon-trash-o"></span> 删除
                           </button>
                         </div>
@@ -326,73 +272,24 @@
               </div>
             </div>
         </div>
-
       </div>
     </div>
 
-
+    <footer>
+        <hr>
+        <p class="am-padding-left">&copy; 2017 Designed by yxq</p>
+    </footer>
 
   </div>
   <!-- content end -->
-	</div>
+</div>
 
-	<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
+<a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
 
-
-    
-	<!--     弹出的部门添加---模态框 -->
-    <div class="am-modal am-modal-no-btn up-frame-bj " tabindex="-1" id="deptAddDlg">
-      <div class="am-modal-dialog up-frame-parent up-frame-radius">
-        <div class="am-modal-hd up-frame-header">
-           <label>部门添加</label>
-          <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-        </div>
-        <div class="am-modal-bd  up-frame-body">
-         	
-         	<form method="post" class="am-form" action="index.html">
-		      <div class="login-form-div">
-		        <input type="text" name="" id="username" value="" placeholder="请输入部门名称">
-		      </div>
-		      <div class="login-form-div">
-		        <input type="password" name="" id="password" value="" placeholder="请输入部门地址">
-		      </div>
-		      <div class="am-cf login-form-div">
-		        <input type="submit" name="" value="添加" class="am-btn am-btn-primary am-btn-lg  am-btn-block am-fl"> 
-		      </div>
-		    </form>
-          
-        </div>
-      </div>
-    </div>
-    <!--     弹出的部门添加---模态框 -->
-    
-    
-    <!--     弹出的部门修改---模态框 -->
-    <div class="am-modal am-modal-no-btn up-frame-bj " tabindex="-1" id="deptModDlg">
-      <div class="am-modal-dialog up-frame-parent up-frame-radius">
-        <div class="am-modal-hd up-frame-header">
-           <label>部门修改</label>
-          <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
-        </div>
-        <div class="am-modal-bd  up-frame-body">
-         	
-         	<form method="post" class="am-form" action="index.html">
-		       <input type="text" name="id" id="" value="" placeholder="请输入部门名称">
-		      <div class="login-form-div">
-		        <input type="text" name="" id="username" value="" placeholder="请输入部门名称">
-		      </div>
-		      <div class="login-form-div">
-		        <input type="password" name="" id="password" value="" placeholder="请输入部门地址">
-		      </div>
-		      <div class="am-cf login-form-div">
-		        <input type="submit" name="" value="修改" class="am-btn am-btn-primary am-btn-lg  am-btn-block am-fl"> 
-		      </div>
-		    </form>
-          
-        </div>
-      </div>
-    </div>
-    <!--     弹出的部门修改---模态框 -->
+    <footer>
+        <hr>
+        <p class="am-padding-left">&copy; 2017 Designed by yxq</p>
+    </footer>
     
     
 <!--     删除模态框 -->
@@ -400,7 +297,7 @@
 	  <div class="am-modal-dialog">
 	    <div class="am-modal-hd">用户删除</div>
 	    <div class="am-modal-bd">
-	      		你,确定要删除这条记录吗?
+	      		你，确定要删除这条记录吗？
 	    </div>
 	    <div class="am-modal-footer">
 	      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
@@ -409,7 +306,9 @@
 	  </div>
 	</div>
 <!--     删除模态框 -->
-
+    
+    
+    
 
 </body>
 </html>
