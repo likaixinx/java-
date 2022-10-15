@@ -34,7 +34,7 @@ public class MainFilter extends HttpFilter {
             return;
         }
         // 一些request请求不需要进行登录校验，比如请求登录页面，这时我们要放行这些request
-        if (servletPath != null && (servletPath.equals("/login") || (servletPath.equals("/login.jsp")))) {
+        if (servletPath != null && (servletPath.contains("/login") || (servletPath.contains("/login.jsp")))) {
             chain.doFilter(request, response);
             System.out.println(servletPath + ":不用校验");
             return;
@@ -42,9 +42,17 @@ public class MainFilter extends HttpFilter {
             HttpSession session = request.getSession();
             System.out.println(session.getAttribute("loginName"));
             String user = (String) session.getAttribute("loginName");
+
+           String attribute = (String) request.getSession(false).getAttribute("dd");
+
             if (user == null) {
                 System.out.println(servletPath + ":您尚未登录，禁止访问");
+
                 request.getSession().setAttribute("msg", "您尚未登录，请您先登录");//存储错误信息
+                if ("ok".equals(attribute)){
+                    request.getSession().setAttribute("msg", "");//存储错误信息
+                    request.getSession(false).setAttribute("dd","no");
+                }
                 //request.setAttribute("return_url", servletPath);
                 response.sendRedirect(request.getContextPath()+"/login.jsp");
                 return;

@@ -19,10 +19,8 @@ public class exitServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         System.out.println("执行了退出");
-        HttpSession session = request.getSession();
-
-
+        HttpSession session = request.getSession(false);
         session.removeAttribute("loginName");
-
+        session.setAttribute("dd","ok");
     }
 }

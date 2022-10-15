@@ -35,7 +35,7 @@ public class loginServlet extends HttpServlet {
 
             if (yzm != null) {
                 HttpSession session = request.getSession();
-                String newYzm = (String) session.getAttribute("verification");
+                String newYzm = (String) session.getAttribute("randStr");
                 System.out.println(newYzm);
                 if (!yzm.equalsIgnoreCase(newYzm)){
                     response.getWriter().write("验证码输入错误");

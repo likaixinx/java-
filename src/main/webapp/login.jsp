@@ -13,7 +13,6 @@
     <script src="static/js/jquery-3.5.1.js"></script>
     <link rel="icon" type="image/png" href="./images/logo.webp">
     <script src="static/js/gt.js"></script>
-
     <script src="./static/js/alert.js"></script>
     <style>
 
@@ -54,7 +53,7 @@
 
 <body>
 
-<h1 style="position: absolute;left: 39%;top: 6%">${sessionScope.msg}</h1>
+<h1 style="position: absolute;left: 39%;top: 3%">${sessionScope.msg}</h1>
 <div class="loginBox">
     <h2 style="color: black;">欢迎来到员工信息管理系统</h2>
     <h2 style="color: black;">管理员请登录</h2>
@@ -83,11 +82,11 @@
             <script>
 
             </script>
-            <img src="verification" id="verification"> <span style="color: black">看不清？点击图片换一张</span>
+            <img src="imgServlet" id="verification"> <span style="color: black;position: absolute;left: 24%;top: 152%;">看不清？点击图片换一张</span>
             <script>
                 document.querySelector("#verification").onclick=function () {
 
-                    document.querySelector("#verification").src="verification?"+new Date();
+                    document.querySelector("#verification").src="imgServlet?"+new Date();
                 }
             </script>
         </div>
@@ -134,7 +133,7 @@
                                         content:xml.responseText,
                                         type:"defeated",
                                     })
-                                    document.querySelector("#verification").src="verification?"+new Date();
+                                    document.querySelector("#verification").src="imgServlet?"+new Date();
 
 
                                 }else {
