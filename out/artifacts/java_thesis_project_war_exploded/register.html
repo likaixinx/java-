@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <link rel="stylesheet" href="./static/css/register-style.css">
+    <link rel="stylesheet" href="./static/css/alert.css">
+    <script src="./static/js/jquery-3.5.1.js"></script>
+    <script src="./static/js/alert.js"></script>
+    <link rel="icon" type="image/png" href="./images/logo.webp">
+    <script src="./static/js/checkPassword.js"></script>
+    <script src="./static/js/checkPassword.js"></script>
+    <style>
+        body{
+
+            /* 渐变背景 */
+            background: linear-gradient(125deg,#2c3e50,#27ae60,#2980b9,#e74c3c,#8e44ad);
+            /* 指定背景图像的大小 */
+            background-size: 500%;
+            /* 执行动画方法 : 动画名 时长 线性的 无限次播放 */
+            animation: bgAnimation 15s linear infinite;
+        }
+
+
+        /* 定义动画 */
+        @keyframes bgAnimation{
+            0%{
+                background-position: 0% 50%;
+            }
+            50%{
+                background-position: 100% 50%;
+            }
+            100%{
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+<div class="container">
+ 
+    <div class="main_right active">
+        <h2>注册</h2>
+<!--            <input type="text"  id="text"  required placeholder="请输入账号" name="username">-->
+
+        <input autocomplete="off" type="text"
+               id="text"  tabindex="1" name="username" required placeholder="请输入账号(最多输入6个字符)" maxlength="6" >
+
+            <p id="pp" style="transform: translateY(-20px);"></p>
+
+
+<!--            <input type="password"   required id="p1" name="pwd" placeholder="请输入密码">-->
+        <input autocomplete="off" tabindex="2" type="password"
+               id="p1"  maxlength="16" required placeholder="请输入密码" name="pwd">
+<!--            <input type="password" id="p2" required name="affPwd"  placeholder="确认密码">-->
+        <input autocomplete="off" type="password"
+               id="p2"  maxlength="16"   tabindex="3" required placeholder="请确认输入密码" name="affPwd">
+        <button class="btn_register">点击注册</button>
+        <br>
+        <a href="login.jsp">已有账号？点击登录</a>
+        <script>
+            //处理用户提交的表单
+            var text1=document.querySelector("#text")
+            var p=document.querySelector("#pp")
+            var flag;
+            text1.onchange=function () {
+
+
+                var xmlRequest=new XMLHttpRequest();
+                xmlRequest.onreadystatechange=function () {
+                    if ( xmlRequest.readyState==4){
+                        if (xmlRequest.status==200){
+                            console.log(xmlRequest.responseText)
+                            p.innerHTML=xmlRequest.responseText;
+                            if (p.innerHTML=='用户名已存在'){
+
+                                flag=true
+                            }
+                        }else{
+                            p.innerHTML='';
+                        }
+                    }
+                    if (p.innerHTML=='用户名可用'){
+                        p.style.color='rgb(21,209,115)'
+                    }else{
+                        p.style.color='red'
+                    }
+                    }
+                text1=document.querySelector("#text")
+                xmlRequest.open('get','/java_thesis_project/checkUserNameServlet?username='+text1.value,true);
+                xmlRequest.send();
+                }
+                   var button=document.querySelector(".btn_register")
+                   button.onclick=function () {
+                       if (document.getElementById('text').value==''||document.getElementById('p1').value=='' ||document.getElementById('p2').value=='') {
+                           new $Msg({
+                               content:"请输入完整！",
+                               type:"defeated",
+
+                           })
+                           return;
+                       }
+
+                       var text=document.querySelector("#text")
+                       var p1=document.querySelector("#p1")
+                       var p2=document.querySelector("#p2")
+
+                       if (p1.value!=p2.value){
+                           new $Msg({
+                               content:"两次密码不一致！",
+                               type:"defeated",
+                               // cancle:function(){
+                               //     let cancle = new $Msg({
+                               //         content:"我是取消后的回调"
+                               //     })
+                               // },
+                               confirm:function(){
+                                   new $Msg({content:"请重新输入！"})
+                               }
+                           })
+                           return
+                       }
+                       var flagPassword = CheckPassWord(p2.value);
+                       if (!flagPassword){
+                           new $Msg({
+                               content:"必须字母加数字且长度不小于8位!",
+                               type:"aa",
+
+                           })
+                           return;
+                       }
+                       if (flag || p.innerHTML=='用户名已存在'){
+                           new $Msg({
+                               content:"该用户名已被注册！请重新输入！",
+                               type:"defeated",
+
+                           })
+                           flag=false;
+
+                           return;
+                       }
+                       var xml = new XMLHttpRequest();
+                       xml.onreadystatechange=function () {
+                           if ( xml.readyState==4){
+                               if (xml.status==200){
+
+                                   new $Msg({
+                                       content:xml.responseText+",两秒后自动跳转登录页面",
+                                       type:"success",
+
+                                   })
+                                   setTimeout(function () {
+                                       window.location.href='login.jsp'
+                                   },2000)
+
+                               }
+                           }
+                       }
+                       xml.open('post','/java_thesis_project/registerServlet',true);
+                       xml.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
+                       xml.send("username="+text.value+"&affPwd="+p2.value);
+                   }
+
+
+            </script>
+
+
+    </div>
+</div>
+<script>
+
+</script>
+
+</body>
+</html>
