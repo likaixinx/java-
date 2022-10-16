@@ -146,6 +146,12 @@
                                 员工管理
                               </a>
                             </li>
+                            <li>
+                                <a href="empSalary.jsp">
+                                    <span class="am-icon-puzzle-piece"></span>
+                                    员工工资管理
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="admin-parent">

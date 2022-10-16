@@ -4,7 +4,8 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <properties resource="jdbc.properties"/>
-    <environments default="development">
+
+    <environments default="mysql">
         <environment id="development">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
@@ -14,6 +15,21 @@
                 <property name="password" value="${jdbc.password}"/>
             </dataSource>
         </environment>
+
+
+            <environment id="mysql">
+                <transactionManager type="JDBC"></transactionManager>
+
+                <!-- POOLED 使用MyBatis内置的连接池实现 -->
+                <!-- MyBatis需要一个连接池工厂，这个工厂可以产生数据库连接池 PooledDataSourceFactory -->
+                <dataSource type="com.jgs.Utils.DruidDataSourceFactory">
+                    <property name="driverClass" value="${jdbc.driver}"/>
+                    <property name="jdbcUrl" value="${jdbc.url}"/>
+                    <property name="username" value="${jdbc.username}"/>
+                    <property name="password" value="${jdbc.password}"/>
+                </dataSource>
+            </environment>
+
     </environments>
     <mappers>
         <package name="com.jgs.mapper"/>

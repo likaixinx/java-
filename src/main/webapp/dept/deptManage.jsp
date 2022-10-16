@@ -46,6 +46,10 @@
 	</script>
 </head>
 <body>
+<script>
+
+
+</script>
 
     <header class="am-topbar am-topbar-inverse admin-header">
         <div class="am-topbar-brand">
@@ -160,7 +164,7 @@
                               </a>
                             </li>
                             <li>
-                              <a href="empManage.jsp">
+                              <a href="empSalary.jsp">
                                 <span class="am-icon-puzzle-piece"></span>
                                 员工工资管理
                               </a>

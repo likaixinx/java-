@@ -1,6 +1,7 @@
 package com.jgs.webServlet.loginsServlet;
 
 import com.jgs.Utils.MD5Util;
+import com.jgs.Utils.Music;
 import com.jgs.pojo.Admin;
 import com.jgs.service.AdminLoginService;
 import com.jgs.service.impl.AdminLoginServiceImpl;
@@ -16,9 +17,11 @@ import java.io.IOException;
 //登录逻辑处理
 @WebServlet("/loginServlet")
 public class loginServlet extends HttpServlet {
+    static    Music music=new Music("D:\\CloudMusic\\2638784520\\FileRecv\\MobileFile\\在你的身边.mp3");
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+        System.out.println(222);
+        music.stop();
     }
 
     @Override
@@ -57,10 +60,10 @@ public class loginServlet extends HttpServlet {
                     //response.sendRedirect("login.jsp");
                     return;
                 }
+                music.start();
                 session.setAttribute("loginName",username);
                 session.removeAttribute("msg");
                 response.getWriter().write("跳转");
-
 
             }
         }

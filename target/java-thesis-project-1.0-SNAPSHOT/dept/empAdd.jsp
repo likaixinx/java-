@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="../amazeui/css/admin.css">
     <link rel="stylesheet" href="../amazeui/plugin/amazeui.cropper.css">
     <link rel="stylesheet" href="../amazeui/plugin/custom_up_img.css">
-    <link rel="stylesheet" href="../css/default.css"/>
+    <link rel="stylesheet" href="../css/default.css" />
     <script src="../static/js/jquery-3.5.1.js"></script>
     <script src="../amazeui/js/amazeui.js"></script>
     <script src="../amazeui/js/app.js"></script>
@@ -99,7 +99,7 @@
                         </script>
                     </ul>
                 </li>
-                <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> </a></li>
+                <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"> </a></li>
             </ul>
         </div>
     </header>
@@ -134,6 +134,12 @@
                                 员工管理
                               </a>
                             </li>
+                            <li>
+                                <a href="empSalary.jsp">
+                                    <span class="am-icon-puzzle-piece"></span>
+                                    员工工资管理
+                                </a>
+                            </li>
                         </ul>
                     </li>
                     <li class="admin-parent">
@@ -151,7 +157,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="login.html"><span class="am-icon-sign-out"></span> 注销</a></li>
+
                 </ul>
                 <div class="am-panel am-panel-default admin-sidebar-panel">
                     <div class="am-panel-bd">
@@ -170,7 +176,7 @@
         <div class="admin-content">
             <div class="admin-content-body">
                 <div class="am-cf am-padding am-padding-bottom-0">
-                    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">员工信息修改</strong> / <small>Employee Information Modify</small></div>
+                    <div class="am-fl am-cf"><strong class="am-text-primary am-text-lg">员工信息添加</strong> / <small>Employee Information Add</small></div>
                 </div>
                 <hr/>
                 
@@ -201,7 +207,6 @@
 
                     <div class="am-u-sm-12 am-u-md-6 am-u-md-pull-6">
                         <form method="post" action="empManage.jsp" class="am-form am-form-horizontal">
-                            <input type="hidden" name="id" readonly="readonly">
                             <div class="am-form-group">
                                 <div class="am-u-sm-11">
                                     <input type="text" id="user-name" placeholder="姓名 / Name">
@@ -259,13 +264,15 @@
                             </div>
                             <div class="am-form-group">
                                 <div class="am-u-sm-11">
-                                    <textarea class="" rows="5" id="user-intro" placeholder="输入个人简介"></textarea>
+                                    <textarea class="" rows="5" id="user-intro" style="resize: none
+
+" placeholder="输入个人简介"></textarea>
                                     <small>250字以内写出你的一生..</small>
                                 </div>
                             </div>
                             <div class="am-form-group">
                                 <div class="am-u-sm-11 am-u-sm-push-3">
-                                    <button type="submit" class="am-btn am-btn-primary">修改</button>
+                                    <button type="submit" class="am-btn am-btn-primary">保存</button>
                                 </div>
                             </div>
                         </form>
@@ -277,10 +284,7 @@
         <!-- content end -->
     </div>
     <a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
-    <footer>
-        <hr>
-        <p class="am-padding-left">&copy; 2017 Designed by yxq</p>
-    </footer>
+
 
 
 
@@ -321,6 +325,8 @@
         </div>
       </div>
     </div>
+
+
 
 
 
