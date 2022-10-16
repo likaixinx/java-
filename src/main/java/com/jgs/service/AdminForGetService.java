@@ -15,10 +15,10 @@ import org.apache.ibatis.session.SqlSession;
  */
 
 public interface AdminForGetService {
-    public Admin forGetService(String name);
+  Admin forGetService(String name);
 
 
-    public Integer UpdatePasswordService(String password,String name);
+  Integer UpdatePasswordService(String password,String name);
 
-
+  Admin selectOldPassword(String name,String pwd);
 }

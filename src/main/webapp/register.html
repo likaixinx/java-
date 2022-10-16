@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="./images/logo.webp">
     <script src="./static/js/checkPassword.js"></script>
     <script src="./static/js/checkPassword.js"></script>
+    <script src="./static/js/tran.js"></script>
     <style>
         body{
 
@@ -55,9 +56,19 @@
 <!--            <input type="password"   required id="p1" name="pwd" placeholder="请输入密码">-->
         <input autocomplete="off" tabindex="2" type="password"
                id="p1"  maxlength="16" required placeholder="请输入密码" name="pwd">
+        <img src="images/eye-hidden.png" class="eye" alt="" width="20px"height="20px" style="position: absolute;left: 83%;top: 38%">
 <!--            <input type="password" id="p2" required name="affPwd"  placeholder="确认密码">-->
         <input autocomplete="off" type="password"
                id="p2"  maxlength="16"   tabindex="3" required placeholder="请确认输入密码" name="affPwd">
+        <img src="images/eye-hidden.png" class="eye" alt="" width="20px"height="20px" style="position: absolute;left: 83%;top: 53%">
+        <script>
+
+            var all = document.querySelectorAll('.eye');
+           var p1=document.getElementById('p1')
+           var p2=document.getElementById('p2')
+            pwd(p1,all[0])
+            pwd(p2,all[1])
+        </script>
         <button class="btn_register">点击注册</button>
         <br>
         <a href="login.jsp">已有账号？点击登录</a>

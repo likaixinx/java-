@@ -23,9 +23,18 @@ public class forgetServlet extends HttpServlet {
         String username = request.getParameter("username");
 
         String pwd2 = request.getParameter("pwd2");
+        String oldPwd = request.getParameter("oldPwd");
+
         Admin admin = adminForGetService.forGetService(username);
         if (admin==null){
             response.getWriter().write("用户名不存在");
+            return;
+        }
+        String digestOld = MD5Util.digest(oldPwd);
+        Admin admin2 = adminForGetService.selectOldPassword(username, digestOld);
+
+        if (admin2==null) {
+            response.getWriter().write("旧密码输入错误");
             return;
         }
         String digest = MD5Util.digest(pwd2);

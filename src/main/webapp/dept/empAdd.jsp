@@ -84,7 +84,7 @@
                 </li>
                 <li class="am-dropdown" data-am-dropdown>
                     <a class="am-dropdown-toggle" data-am-dropdown-toggle href="javascript:;">
-                        <span class="am-icon-users"></span> 管理员:${sessionScope.loginName} <span class="am-icon-caret-down"></span>
+                        <span class="am-icon-users"></span> 管理员:<strong style="color: #000;font-weight: 700;">${sessionScope.loginName}</strong> <span class="am-icon-caret-down"></span>
                     </a>
                     <ul class="am-dropdown-content">
                         <li><a href="userInfo.jsp"><span class="am-icon-user"></span> 个人资料</a></li>
@@ -151,7 +151,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="login.html"><span class="am-icon-sign-out"></span> 注销</a></li>
+
                 </ul>
                 <div class="am-panel am-panel-default admin-sidebar-panel">
                     <div class="am-panel-bd">
@@ -258,7 +258,9 @@
                             </div>
                             <div class="am-form-group">
                                 <div class="am-u-sm-11">
-                                    <textarea class="" rows="5" id="user-intro" placeholder="输入个人简介"></textarea>
+                                    <textarea class="" rows="5" id="user-intro" style="resize: none
+
+" placeholder="输入个人简介"></textarea>
                                     <small>250字以内写出你的一生..</small>
                                 </div>
                             </div>
@@ -271,18 +273,12 @@
                     </div>
                 </div>
             </div>
-            <footer class="admin-content-footer">
-                <hr>
-                <p class="am-padding-left">&copy; 2017 Designed by yxq</p>
-            </footer>
+
         </div>
         <!-- content end -->
     </div>
     <a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
-    <footer>
-        <hr>
-        <p class="am-padding-left">&copy; 2017 Designed by yxq</p>
-    </footer>
+
 
 
 

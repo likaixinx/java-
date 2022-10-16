@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="./static/css/alert.css">
     <link rel="icon" type="image/png" href="./images/logo.webp">
     <link rel="stylesheet" href="./static/css/fotget-style.css">
+    <script src="./static/js/tran.js"></script>
     <style>
         body{
             /* 初始化 取消内外边距 */
@@ -57,30 +58,57 @@
         <h1 style="color: #000;font-size: 22px" >修改密码</h1>
 
 
-       <input type="text" autocomplete="off" name="username" class="placeholder" id="name" placeholder="请输入账号" required>
+       <input type="text" autocomplete="off" name="username" class="placeholder" id="name" placeholder="请输入账号"> 
+        
+        <input type="password" placeholder="请输入旧密码" id="oldPwd" name="oldPwd" class="placeholder p" maxlength="16" >
 
-        <input type="password"   placeholder="请输入密码" name="pwd1" id="p1" class="placeholder" maxlength="16" >
+        <img src="images/eye-hidden.png" class="eye" alt="" width="20px"height="20px" style="position: absolute;left: 85%;top: 55%">
 
-        <input type="password"   placeholder="确认密码" name="pwd2" id="p2" class="placeholder" maxlength="16">
+        <input type="password"   placeholder="请输入新密码" name="pwd1" id="p1" class="placeholder p" maxlength="16" >
+
+        <img src="images/eye-hidden.png" class="eye" alt="" width="20px"height="20px" style="position: absolute;left: 85%;top: 85%">
+
+        <input type="password" placeholder="请再次输入确认新密码" name="pwd2" id="p2" class="placeholder p" maxlength="16">
+
+        <img src="images/eye-hidden.png" class="eye" alt="" width="20px"height="20px" style="position: absolute;left: 85%;top: 116%">
+        <script>
+            var p1=document.getElementById('p1')
+            var p2=document.getElementById('p2')
+            var old=document.getElementById('oldPwd')
+            var all = document.querySelectorAll('.eye');
+            pwd(old,all[0])
+            pwd(p1,all[1])
+            pwd(p2,all[2])
+
+        </script>
         <button id="btn">点击修改</button>
 
     <script>
         var but=document.getElementById('btn')
 
         but.onclick=function () {
-            var username=document.getElementById('name')
+            var name=document.getElementById('name')
             var p1=document.getElementById('p1')
             var p2=document.getElementById('p2')
-            if (username.value==''||p1.value==''||p2.value==''){
+            var old=document.getElementById('oldPwd')
+            if (name.value==''||p1.value==''||p2.value==''||old.value==''){
                 new $Msg({
                     content:'请输入完整！',
                     type:"defeated",
                 })
                 return
             }
+
             if (p1.value!=p2.value){
                 new $Msg({
                     content:'两次密码输入不一致',
+                    type:"defeated",
+                })
+                return
+            }
+            if (p2.value==old.value){
+                new $Msg({
+                    content:'新密码和旧密码一致！请重新输入！',
                     type:"defeated",
                 })
                 return
@@ -95,10 +123,19 @@
                 return;
             }
 
+
+
             var xml=new XMLHttpRequest();
             xml.onreadystatechange=function () {
                 if (xml.readyState==4){
                     if (xml.status==200){
+                        if (xml.responseText=='旧密码输入错误'){
+                            new $Msg({
+                                content:'旧密码输入错误',
+                                type:"aa",
+                            })
+                            return
+                        }
                         new $Msg({
                             content:xml.responseText,
                             type:"success",
@@ -110,7 +147,7 @@
             }
             xml.open('post','forgetServlet',true);
             xml.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
-            xml.send("username="+username.value+"&pwd1="+p1.value+"&pwd2="+p2.value);
+            xml.send("username="+name.value+"&pwd1="+p1.value+"&oldPwd="+old.value+"&pwd2="+p2.value);
         }
     </script>
 </div>

@@ -13,7 +13,6 @@
     <script src="static/js/jquery-3.5.1.js"></script>
     <link rel="icon" type="image/png" href="./images/logo.webp">
     <script src="static/js/gt.js"></script>
-
     <script src="./static/js/alert.js"></script>
     <style>
 

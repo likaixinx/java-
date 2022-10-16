@@ -29,4 +29,14 @@ public class AdminForGetServiceImpl implements AdminForGetService {
         sqlSession.commit();
         return count;
     }
+
+    @Override
+    public Admin selectOldPassword(String name, String pwd) {
+        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
+         return mapper.selectOldPassword(name, pwd);
+
+    }
+
+
 }

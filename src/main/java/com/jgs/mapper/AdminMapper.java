@@ -29,4 +29,8 @@ public interface AdminMapper {
     //修改密码
     @Update("update `admin` set `pwd`=#{pwd} where `name`=#{username}")
     Integer updatePassword(@Param("pwd") String password,@Param("username") String username);
+
+    //查询是否和旧密码一致
+    @Select("select `name`,pwd from `admin` where name=#{name} and pwd=#{pwd}")
+    Admin selectOldPassword(@Param("name") String name,@Param("pwd") String pwd);
  }
