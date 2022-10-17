@@ -1,10 +1,15 @@
 package com.jgs.webServlet.loginsServlet;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.jgs.Utils.MD5Util;
 import com.jgs.Utils.Music;
 import com.jgs.pojo.Admin;
+import com.jgs.pojo.Department;
+import com.jgs.pojo.Page;
 import com.jgs.service.AdminLoginService;
 import com.jgs.service.impl.AdminLoginServiceImpl;
+import com.jgs.service.impl.DeptPageServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,16 +18,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 //登录逻辑处理
 @WebServlet("/loginServlet")
 public class loginServlet extends HttpServlet {
-    static    Music music=new Music("D:\\CloudMusic\\2638784520\\FileRecv\\MobileFile\\在你的身边.mp3");
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        System.out.println(222);
-        music.stop();
-    }
+    DeptPageServiceImpl pageService=new DeptPageServiceImpl();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -60,7 +61,18 @@ public class loginServlet extends HttpServlet {
                     //response.sendRedirect("login.jsp");
                     return;
                 }
-                music.start();
+                Integer pageNum= 1;
+                Integer pageSize=5;
+
+                PageHelper.startPage(pageNum, pageSize);//开启分页
+                List<Department> departments = pageService.selectAllPage((pageNum - 1) * pageSize, pageSize);
+                System.out.println(departments);
+
+                PageInfo<Department> pageInfo = new PageInfo<>(departments,4);
+                System.out.println(pageInfo);
+                session.setAttribute("deptList",departments);
+                session.setAttribute("page",pageInfo);
+
                 session.setAttribute("loginName",username);
                 session.removeAttribute("msg");
                 response.getWriter().write("跳转");

@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>首页</title>
+    <title>个人信息</title>
     <meta name="keywords" content="user">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
@@ -108,12 +108,7 @@
         <div class="admin-sidebar am-offcanvas overflow-hidden" id="admin-offcanvas">
             <div class="am-offcanvas-bar admin-offcanvas-bar">
                 <ul class="am-list admin-sidebar-list">
-                    <li>
-                      <a href="/java_thesis_project/exitServlet">
-                        <span class="am-icon-home"></span> 
-                        首页
-                      </a>
-                    </li>
+
                     <li class="admin-parent">
                         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
                           <span class="am-icon-file"></span> 
@@ -133,6 +128,12 @@
                                 <span class="am-icon-puzzle-piece"></span> 
                                 员工管理
                               </a>
+                            </li>
+                            <li>
+                                <a href="empAdd.jsp">
+                                    <span class="am-icon-puzzle-piece"></span>
+                                    加入新员工
+                                </a>
                             </li>
                             <li>
                                 <a href="empSalary.jsp">
@@ -193,7 +194,7 @@
                                             <div class="am-form-group">
                                                 <input type="file" id="user-pic" class="display-none">
                                                 <!-- <p class="am-form-help">请选择要上传的文件..</p> -->
-                                                <a id="showUpDlgBtn" class="am-btn am-btn-primary am-btn-block">头像修改</a>
+                                                <a id="showUpDlgBtn" class="am-btn am-btn-primary am-btn-block" style="background: #0e90d2;">头像修改</a>
                                             </div>
                                         </form>
                                     </div>
@@ -241,7 +242,7 @@
                             </div>
                             <div class="am-form-group">
                                 <div class="am-u-sm-11 am-u-sm-push-3">
-                                    <button type="button" class="am-btn am-btn-primary">保存修改</button>
+                                    <button type="button" class="am-btn am-btn-primary" style="background: #0e90d2;">保存修改</button>
                                 </div>
                             </div>
                         </form>

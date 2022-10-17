@@ -6,7 +6,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>首页</title>
+    <title>修改信息</title>
     <meta name="keywords" content="user">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="renderer" content="webkit">
@@ -108,12 +108,7 @@
         <div class="admin-sidebar am-offcanvas overflow-hidden" id="admin-offcanvas">
             <div class="am-offcanvas-bar admin-offcanvas-bar">
                 <ul class="am-list admin-sidebar-list">
-                    <li>
-                      <a href="index.html">
-                        <span class="am-icon-home"></span> 
-                        首页
-                      </a>
-                    </li>
+
                     <li class="admin-parent">
                         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
                           <span class="am-icon-file"></span> 
@@ -133,6 +128,12 @@
                                 <span class="am-icon-puzzle-piece"></span> 
                                 员工管理
                               </a>
+                            </li>
+                            <li>
+                                <a href="empAdd.jsp">
+                                    <span class="am-icon-puzzle-piece"></span>
+                                    加入新员工
+                                </a>
                             </li>
                             <li>
                                 <a href="empSalary.jsp">

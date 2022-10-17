@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page isELIgnored="false" %>
 <html class="no-js">
@@ -44,12 +44,10 @@
 		}
 		
 	</script>
+
 </head>
 <body>
-<script>
 
-
-</script>
 
     <header class="am-topbar am-topbar-inverse admin-header">
         <div class="am-topbar-brand">
@@ -137,12 +135,7 @@
         <div class="admin-sidebar am-offcanvas overflow-hidden" id="admin-offcanvas">
             <div class="am-offcanvas-bar admin-offcanvas-bar">
                 <ul class="am-list admin-sidebar-list">
-                    <li>
-                      <a href="login.html">
-                        <span class="am-icon-home"></span> 
-                        首页
-                      </a>
-                    </li>
+
                     <li class="admin-parent">
                         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
                           <span class="am-icon-file"></span> 
@@ -161,6 +154,12 @@
                               <a href="empManage.jsp">
                                 <span class="am-icon-puzzle-piece"></span> 
                                 员工管理
+                              </a>
+                            </li>
+                            <li>
+                              <a href="empAdd.jsp">
+                                <span class="am-icon-puzzle-piece"></span>
+                                加入新员工
                               </a>
                             </li>
                             <li>
@@ -244,11 +243,11 @@
                 </tr>
               </thead>
               <tbody>
-                  <tr>
+                  <tr id="t1">
                     <td><input type="checkbox" /></td>
-                    <td>1</td>
-                    <td><a href="#">人事部</a></td>
-                    <td>3幢1层306</td>
+                    <td>${sessionScope.deptList[0].id}</td>
+                    <td><a href="#">${sessionScope.deptList[0].departmentName}</a></td>
+                    <td>${sessionScope.deptList[0].departmentAddress}</td>
                     <td>
                       <div class="am-btn-toolbar">
                         <div class="am-btn-group am-btn-group-xs">
@@ -262,73 +261,138 @@
                       </div>
                     </td>
                   </tr>
-                  <tr>
-                    <td><input type="checkbox" /></td>
-                    <td>1</td>
-                    <td><a href="#">人事部</a></td>
-                    <td>3幢1层306</td>
-                    <td>
-                      <div class="am-btn-toolbar">
-                        <div class="am-btn-group am-btn-group-xs">
-                          <button class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="openModDlg(99)">
-                              <span class="am-icon-pencil-square-o"></span> 编辑
-                          </button>
-                          <button  onclick="crmDelete(11)" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
-                              <span class="am-icon-trash-o"></span> 删除
-                          </button>
-                        </div>
-                      </div>
-                    </td>
+                  <tr id="t2">
+                      <td><input type="checkbox" /></td>
+                      <td>${sessionScope.deptList[1].id}</td>
+                      <td><a href="#">${sessionScope.deptList[1].departmentName}</a></td>
+                      <td>${sessionScope.deptList[1].departmentAddress}</td>
+                      <td>
+                          <div class="am-btn-toolbar">
+                              <div class="am-btn-group am-btn-group-xs">
+                                  <button onclick="openModDlg(99)" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                      <span class="am-icon-pencil-square-o"></span> 编辑
+                                  </button>
+                                  <button onclick="crmDelete(11)" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                      <span  class="am-icon-trash-o"></span> 删除
+                                  </button>
+                              </div>
+                          </div>
+                      </td>
                   </tr>
-                  <tr>
-                    <td><input type="checkbox" /></td>
-                    <td>1</td>
-                    <td><a href="#">人事部</a></td>
-                    <td>3幢1层306</td>
-                    <td>
-                      <div class="am-btn-toolbar">
-                        <div class="am-btn-group am-btn-group-xs">
-                          <button class="am-btn am-btn-default am-btn-xs am-text-secondary" onclick="openModDlg(99)">
-                              <span class="am-icon-pencil-square-o"></span> 编辑
-                          </button>
-                          <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" onclick="crmDelete(11)">
-                              <span class="am-icon-trash-o"></span> 删除
-                          </button>
-                        </div>
-                      </div>
-                    </td>
+                  <tr id="t3">
+                      <td><input type="checkbox" /></td>
+                      <td>${sessionScope.deptList[2].id}</td>
+                      <td><a href="#">${sessionScope.deptList[2].departmentName}</a></td>
+                      <td>${sessionScope.deptList[2].departmentAddress}</td>
+                      <td>
+                          <div class="am-btn-toolbar">
+                              <div class="am-btn-group am-btn-group-xs">
+                                  <button onclick="openModDlg(99)" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                      <span class="am-icon-pencil-square-o"></span> 编辑
+                                  </button>
+                                  <button onclick="crmDelete(11)" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                      <span  class="am-icon-trash-o"></span> 删除
+                                  </button>
+                              </div>
+                          </div>
+                      </td>
                   </tr>
-                  <tr>
-                    <td><input type="checkbox" /></td>
-                    <td>1</td>
-                    <td><a href="#">人事部</a></td>
-                    <td>3幢1层306</td>
-                    <td>
-                      <div class="am-btn-toolbar">
-                        <div class="am-btn-group am-btn-group-xs">
-                          <button class="am-btn am-btn-default  am-btn-xs am-text-secondary" onclick="openModDlg()">
-                              <span class="am-icon-pencil-square-o"></span> 编辑
-                          </button>
-                          <button class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only" onclick="crmDelete()">
-                              <span class="am-icon-trash-o"></span> 删除
-                          </button>
-                        </div>
-                      </div>
-                    </td>
+                  <tr id="t4">
+                      <td><input type="checkbox" /></td>
+                      <td>${sessionScope.deptList[3].id}</td>
+                      <td><a href="#">${sessionScope.deptList[3].departmentName}</a></td>
+                      <td>${sessionScope.deptList[3].departmentAddress}</td>
+                      <td>
+                          <div class="am-btn-toolbar">
+                              <div class="am-btn-group am-btn-group-xs">
+                                  <button onclick="openModDlg(99)" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                      <span class="am-icon-pencil-square-o"></span> 编辑
+                                  </button>
+                                  <button onclick="crmDelete(11)" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                      <span  class="am-icon-trash-o"></span> 删除
+                                  </button>
+                              </div>
+                          </div>
+                      </td>
+                  </tr>
+                  <tr id="t5">
+                      <td><input type="checkbox" /></td>
+                      <td>${sessionScope.deptList[4].id}</td>
+                      <td><a href="#">${sessionScope.deptList[4].departmentName}</a></td>
+                      <td>${sessionScope.deptList[4].departmentAddress}</td>
+                      <td>
+                          <div class="am-btn-toolbar">
+                              <div class="am-btn-group am-btn-group-xs">
+                                  <button onclick="openModDlg(99)" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                      <span class="am-icon-pencil-square-o"></span> 编辑
+                                  </button>
+                                  <button onclick="crmDelete(11)" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                      <span  class="am-icon-trash-o"></span> 删除
+                                  </button>
+                              </div>
+                          </div>
+                      </td>
                   </tr>
               </tbody>
             </table>
             <div class="am-cf">
               <div class="am-fr">
                 <ul class="am-pagination">
-                  <li class="am-disabled"><a href="#">«</a></li>
-                  <li class="am-active"><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
-                  <li><a href="#">»</a></li>
+                  <li class="am-disabled" >
+                      <button>上一页</button></li>
+
+                        <li class="am-active" id="li">
+
+
+                        </li>
+                    <script>
+                        var num=`${sessionScope.page.pages}`
+                        var pageNum=`${sessionScope.page.pageNum}`
+                        console.log(pageNum)
+                        console.log(num)
+                        var li = document.getElementById("li")
+                        var arr=[]
+                        for (let i = 0; i < num; i++) {
+
+                            arr[i]= document.createElement("span");
+
+                            arr[i].setAttribute('style','color:#000;')
+                            arr[i].setAttribute('pageNum',i+1)
+                            arr[i].setAttribute('class','sp')
+                            arr[i].innerHTML=(i+1).toString()
+                            li.appendChild(arr[i])
+                        }
+                        var list = document.querySelectorAll('.sp');
+                        console.log(list)
+
+                        for (let i = 0; i < list.length; i++) {
+
+                            if (list[i].getAttribute('pagenum')== pageNum) {
+                                list[i].setAttribute('style','background-color: skyblue;color:#000')
+                            }
+                        }
+                        for (let i = 0; i < list.length; i++) {
+                            list[i].onclick=function () {
+                                console.log(this.getAttribute('pagenum'));
+
+                            }
+                        }
+
+
+                    </script>
+
+
+                    <script>
+                        $('#a1').click(function () {
+                            $.get('/java_thesis_project/page',{startIndex:1,pageSize:4},function (response) {
+                                console.log(response)
+                            })
+                        })
+                    </script>
+
+                  <li><button>下一页</button></li>
                 </ul>
+                <p>当前页:<span style="color: skyblue;font-size: 20px;font-weight: 700">${sessionScope.page.pageNum}</span>,共有<span style="color: skyblue;font-size: 20px;font-weight: 700">${sessionScope.page.total}</span>条数据，共有<span style="color: skyblue;font-size: 20px;font-weight: 700">${sessionScope.page.pages}</span>页</p>
               </div>
             </div>
         </div>
@@ -363,7 +427,7 @@
 		        <input type="password" name="" id="password" value="" placeholder="请输入部门地址">
 		      </div>
 		      <div class="am-cf login-form-div">
-		        <input type="submit" name="" value="添加" class="am-btn am-btn-primary am-btn-lg  am-btn-block am-fl"> 
+		        <input type="submit" name="" style="background: #0e90d2;" value="添加" class="am-btn am-btn-primary am-btn-lg  am-btn-block am-fl">
 		      </div>
 		    </form>
           
@@ -391,7 +455,7 @@
 		        <input type="password" name="" id="password" value="" placeholder="请输入部门地址">
 		      </div>
 		      <div class="am-cf login-form-div">
-		        <input type="submit" name="" value="修改" class="am-btn am-btn-primary am-btn-lg  am-btn-block am-fl"> 
+		        <input type="submit" name="" style="color: #000" value="修改" class="am-btn am-btn-primary am-btn-lg  am-btn-block am-fl">
 		      </div>
 		    </form>
           

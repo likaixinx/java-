@@ -5,7 +5,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Amaze UI Admin table Examples</title>
+  <title>部门管理</title>
   <meta name="description" content="这是一个 table 页面">
   <meta name="keywords" content="table">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -120,12 +120,7 @@
         <div class="admin-sidebar am-offcanvas overflow-hidden" id="admin-offcanvas">
             <div class="am-offcanvas-bar admin-offcanvas-bar">
                 <ul class="am-list admin-sidebar-list">
-                    <li>
-                      <a href="index.html">
-                        <span class="am-icon-home"></span> 
-                        首页
-                      </a>
-                    </li>
+
                     <li class="admin-parent">
                         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
                           <span class="am-icon-file"></span> 
@@ -145,6 +140,12 @@
                                 <span class="am-icon-puzzle-piece"></span> 
                                 员工管理
                               </a>
+                            </li>
+                            <li>
+                                <a href="empAdd.jsp">
+                                    <span class="am-icon-puzzle-piece"></span>
+                                    加入新员工
+                                </a>
                             </li>
                             <li>
                                 <a href="empSalary.jsp">
@@ -198,9 +199,7 @@
         <div class="am-u-sm-12 am-u-md-6">
           <div class="am-btn-toolbar">
             <div class="am-btn-group am-btn-group-xs">
-              <a href="empAdd.jsp" type="button" class="am-btn am-btn-default">
-              	<span class="am-icon-plus"></span>添加员工
-              </a>
+
             </div>
           </div>
         </div>
