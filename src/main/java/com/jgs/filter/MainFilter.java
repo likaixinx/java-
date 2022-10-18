@@ -3,6 +3,11 @@ package com.jgs.filter;
 
 
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.jgs.pojo.Department;
+import com.jgs.service.impl.DeptPageServiceImpl;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebFilter;
@@ -11,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * @ClassName: com.jgs.filter.MainFilter
@@ -18,8 +24,9 @@ import java.io.IOException;
  * @create: 2022年10月14日 16:49
  * @description:
  */
-@WebFilter("/dept/*")
+//@WebFilter("/dept/*")
 public class MainFilter extends HttpFilter {
+    static DeptPageServiceImpl pageService = new DeptPageServiceImpl();
 
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
@@ -27,6 +34,7 @@ public class MainFilter extends HttpFilter {
         String servletPath = request.getServletPath();// 获取目标项目地址
         StringBuffer url = request.getRequestURL();// 获取访问URL
         //过滤器如果访问css  jpg  do  png  js都会被拦截，所以要添加判断允许访问这些资源
+
         if ( url.toString().endsWith(".css")) {
 
             chain.doFilter(request, response);
@@ -60,7 +68,6 @@ public class MainFilter extends HttpFilter {
                 //用户已登录则直接放行
                 chain.doFilter(request, response);
                 System.out.println(servletPath + ":" + user + "用户已登录,可以访问");
-
                 return;
             }
         }

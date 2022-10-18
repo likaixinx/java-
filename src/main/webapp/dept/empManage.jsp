@@ -120,7 +120,12 @@
         <div class="admin-sidebar am-offcanvas overflow-hidden" id="admin-offcanvas">
             <div class="am-offcanvas-bar admin-offcanvas-bar">
                 <ul class="am-list admin-sidebar-list">
-
+                    <li>
+                        <a href="index.html">
+                            <span class="am-icon-home"></span>
+                            首页
+                        </a>
+                    </li>
                     <li class="admin-parent">
                         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
                           <span class="am-icon-file"></span> 

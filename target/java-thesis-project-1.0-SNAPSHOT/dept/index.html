@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>员工信息管理系统首页</title>
+    <link rel="stylesheet" href="../css/idnex.css">
+    <link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="../static/js/jquery-3.5.1.js"></script>
+    <style>
+
+
+        a{
+            /* 相对定位 */
+            display: block;
+            position: relative;
+            width: 400px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 24px;
+            color: #fff;
+            /* 渐变背景 */
+            background: linear-gradient(to right,#03a9f4,#f441a5,#ffeb3b,#09a8f4);
+            /* 背景渐变色大小 */
+            background-size: 400%;
+            /* 圆角 */
+            border-radius: 50px;
+            z-index: 1;
+        }
+
+        /* 发光效果 */
+        a::before{
+            content: "";
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            bottom: -5px;
+            right: -5px;
+
+            background: linear-gradient(to right,#03a9f4,#f441a5,#ffeb3b,#09a8f4);
+            /* 背景渐变色大小 */
+            background-size: 400%;
+            /* 圆角 */
+            border-radius: 50px;
+            z-index: -1;
+            /* 设置模糊度 显示发光效果 */
+            filter: blur(20px);
+        }
+
+        /* 鼠标移入执行动画 */
+        a:hover{
+            /* 动画: 名称 时间  infinite是无限次播放 */
+            animation: streamer 8s infinite;
+        }
+
+        a:hover::before{
+            animation: streamer 8s infinite;
+        }
+
+
+
+        /* 定义动画 */
+        @keyframes streamer{
+            100%{
+                background-position: -400% 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<h1 style="position: absolute;left: 40%;top: 5%">  <a  id="a"  style="cursor: pointer; color:#fff;font-size: 24px;font-weight: bold;text-decoration: none">点击这查看员工啦~</a></h1>
+<script>
+    $('#a').click(function () {
+        $.get('/java_thesis_project/page?num=1',{},function () {
+            location.href='deptManage.jsp'
+        })
+    })
+
+</script>
+    <div class="container">
+
+        <div class="item active" style="background-image: url(../images/sun.jpeg);">
+            <div class="shadow"></div>
+            <div class="content">
+                <div class="icon">
+                    <i class="fa fa-sun-o" aria-hidden="true"></i>
+                </div>
+                <div class="text">
+                    <div class="tit">打工人</div>
+                    <div class="sub">加油！</div>
+                </div>
+            </div>
+        </div>
+        <div class="item" style="background-image: url(../images/cloud.jpeg);">
+            <div class="shadow"></div>
+            <div class="content">
+                <div class="icon">
+                    <i class="fa fa-cloud" aria-hidden="true"></i>
+                </div>
+                <div class="text">
+                    <div class="tit">你干嘛</div>
+                    <div class="sub">哎哟</div>
+                </div>
+            </div>
+        </div>
+        <div class="item" style="background-image: url(../images/rain.jpeg);">
+            <div class="shadow"></div>
+            <div class="content">
+                <div class="icon">
+                    <i class="fa fa-tint" aria-hidden="true"></i>
+                </div>
+                <div class="text">
+                    <div class="tit">又来管理信息了？</div>
+                    <div class="sub">作为管理员也不可以随便修改哦~</div>
+                </div>
+            </div>
+        </div>
+        <div class="item" style="background-image: url(../images/bolt.jpeg);">
+            <div class="shadow"></div>
+            <div class="content">
+                <div class="icon">
+                    <i class="fa fa-bolt" aria-hidden="true"></i>
+                </div>
+                <div class="text">
+                    <div class="tit">我亦无他。</div>
+                    <div class="sub">惟手熟尔。</div>
+                </div>
+            </div>
+        </div>
+        <div class="item" style="background-image: url(../images/snow.jpeg);">
+            <div class="shadow"></div>
+            <div class="content">
+                <div class="icon">
+                    <i class="fa fa-snowflake-o" aria-hidden="true"></i>
+                </div>
+                <div class="text">
+                    <div class="tit">考你一下</div>
+                    <div class="sub">java八大数据类型是什么？</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../static/js/index.js"></script>
+</body>
+</html>

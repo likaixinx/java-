@@ -18,7 +18,7 @@ public interface DepartmentMapper {
     int insertSelective(Department row);
 
     List<Department> selectAllDept();
-
+    List<Department> searchByDepartmentName(@Param("name") String name);
 
     List<Department> selectByExample(DepartmentExample example);
 

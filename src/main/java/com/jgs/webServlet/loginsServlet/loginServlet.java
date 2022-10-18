@@ -61,17 +61,18 @@ public class loginServlet extends HttpServlet {
                     //response.sendRedirect("login.jsp");
                     return;
                 }
-                Integer pageNum= 1;
-                Integer pageSize=5;
 
-                PageHelper.startPage(pageNum, pageSize);//开启分页
-                List<Department> departments = pageService.selectAllPage((pageNum - 1) * pageSize, pageSize);
-                System.out.println(departments);
-
-                PageInfo<Department> pageInfo = new PageInfo<>(departments,4);
-                System.out.println(pageInfo);
-                session.setAttribute("deptList",departments);
-                session.setAttribute("page",pageInfo);
+//                Integer pageNum= 1;
+//                Integer pageSize=5;
+//
+//                PageHelper.startPage(pageNum, pageSize);//开启分页
+//                List<Department> departments = pageService.selectAllPage(pageNum , pageSize);
+//                System.out.println(departments);
+//
+//                PageInfo<Department> pageInfo = new PageInfo<>(departments,4);
+//                System.out.println(pageInfo);
+//                session.setAttribute("deptList",departments);
+//                session.setAttribute("page",pageInfo);
 
                 session.setAttribute("loginName",username);
                 session.removeAttribute("msg");

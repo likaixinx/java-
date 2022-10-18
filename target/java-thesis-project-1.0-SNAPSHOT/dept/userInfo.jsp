@@ -108,7 +108,12 @@
         <div class="admin-sidebar am-offcanvas overflow-hidden" id="admin-offcanvas">
             <div class="am-offcanvas-bar admin-offcanvas-bar">
                 <ul class="am-list admin-sidebar-list">
-
+                    <li>
+                        <a href="index.html">
+                            <span class="am-icon-home"></span>
+                            首页
+                        </a>
+                    </li>
                     <li class="admin-parent">
                         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
                           <span class="am-icon-file"></span> 
@@ -158,7 +163,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li><a href="login.html"><span class="am-icon-sign-out"></span> 注销</a></li>
+
                 </ul>
                 <div class="am-panel am-panel-default admin-sidebar-panel">
                     <div class="am-panel-bd">

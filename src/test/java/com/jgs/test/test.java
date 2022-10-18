@@ -18,6 +18,7 @@ import java.util.List;
  * @description:
  */
 public class test {
+
     @Test
     public void t1(){
         SqlSession sqlSession = SqlSessionUtils.getSqlSession();
@@ -38,4 +39,5 @@ public class test {
         System.out.println("department = " + selectByExample);
         sqlSession.close();
     }
+
 }

@@ -7,6 +7,9 @@
     <result column="department_address" jdbcType="VARCHAR" property="departmentAddress" />
     <result column="department_eid" jdbcType="INTEGER" property="departmentEid" />
   </resultMap>
+  <sql id="field" >
+    id,department_name,department_address
+  </sql>
   <sql id="Example_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
@@ -148,6 +151,11 @@
   </resultMap>
     <select id="selectAllDept" resultMap="DeptMap">
       select id,department_name,department_address from t_department
+    </select>
+    <select id="searchByDepartmentName" resultMap="DeptMap">
+        select id,department_name,department_address from t_department where department_name like "%"#{name}"%"
+
+
     </select>
     <update id="updateByExampleSelective" parameterType="map">
     update t_department

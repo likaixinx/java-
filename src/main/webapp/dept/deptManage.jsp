@@ -18,10 +18,11 @@
   <link rel="stylesheet" href="../amazeui/css/amazeui.min.css" />
   <link rel="stylesheet" href="../amazeui/css/admin.css">
   <link rel="stylesheet" href="../css/default.css">
+    <link rel="stylesheet" href="../static/css/alert.css">
     <script src="../static/js/jquery-3.5.1.js"></script>
     <script src="../amazeui/js/amazeui.js"></script>
     <script src="../amazeui/js/app.js"></script>
-
+    <script src="../static/js/alert.js"></script>
 	<script type="text/javascript">
 		function openModDlg(id){
 			$("#deptModDlg input[name=id]").val(id);
@@ -135,7 +136,12 @@
         <div class="admin-sidebar am-offcanvas overflow-hidden" id="admin-offcanvas">
             <div class="am-offcanvas-bar admin-offcanvas-bar">
                 <ul class="am-list admin-sidebar-list">
-
+                    <li>
+                        <a href="index.html">
+                            <span class="am-icon-home"></span>
+                            首页
+                        </a>
+                    </li>
                     <li class="admin-parent">
                         <a class="am-cf" data-am-collapse="{target: '#collapse-nav'}">
                           <span class="am-icon-file"></span> 
@@ -220,9 +226,10 @@
         </div>
         <div class="am-u-sm-12 am-u-md-5">
           <div class="am-input-group am-input-group-sm">
-            <input type="text" class="am-form-field">
+            <input type="text" class="am-form-field" id="search" autocapitalize="off">
             <span class="am-input-group-btn">
-              <button class="am-btn am-btn-default" type="button">搜索</button>
+              <button class="am-btn am-btn-default" id="b" type="button">搜索</button>
+
             </span>
           </div>
         </div>
@@ -251,7 +258,7 @@
                     <td>
                       <div class="am-btn-toolbar">
                         <div class="am-btn-group am-btn-group-xs">
-                          <button onclick="openModDlg(99)" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                          <button onclick="openModDlg()" class="am-btn am-btn-default am-btn-xs am-text-secondary">
                               <span class="am-icon-pencil-square-o"></span> 编辑
                           </button>
                           <button onclick="crmDelete(11)" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
@@ -335,27 +342,53 @@
                   </tr>
               </tbody>
             </table>
+            <script>
+                $('#b').click(function () {
+                    var tbody=document.querySelector('tbody')
+                    $.get('/java_thesis_project/pageLike?search='+$('#search').val(),function (response) {
+
+                        location.reload()
+                    })
+
+                })
+
+
+
+
+            </script>
             <div class="am-cf">
               <div class="am-fr">
                 <ul class="am-pagination">
                   <li class="am-disabled" >
-                      <button>上一页</button></li>
-
+                      <button class="btn">上一页</button></li>
                         <li class="am-active" id="li">
-
-
                         </li>
                     <script>
                         var num=`${sessionScope.page.pages}`
                         var pageNum=`${sessionScope.page.pageNum}`
+                        var count=`${sessionScope.page.size}`
+                        var is=`${sessionScope.page.isLastPage}`
+                        console.log(is)
+                        var tbody=document.querySelector('tbody')
+                        console.log(tbody.children)
+                        //排他思想 如果等于true 说明已经是最后一页 拿到count count是这个页有多少数据
+                        //把其他干掉 留下count行
+                        if (is=='true'){
+                            for (let i = 0; i < tbody.children.length; i++) {
+                                tbody.children[i].style.display='none';
+                            }
+                            for (let i = 0; i < count; i++) {
+                                tbody.children[i].style.display='table-row';
+                            }
+                        }
                         console.log(pageNum)
                         console.log(num)
                         var li = document.getElementById("li")
                         var arr=[]
+                        //根据有多少页动态创建页数按钮
                         for (let i = 0; i < num; i++) {
 
                             arr[i]= document.createElement("span");
-
                             arr[i].setAttribute('style','color:#000;cursor: pointer')
                             arr[i].setAttribute('pageNum',i+1)
                             arr[i].setAttribute('class','sp')
@@ -371,26 +404,54 @@
                                 list[i].setAttribute('style','background-color: skyblue;color:#000')
                             }
                         }
-                        for (let i = 0; i < list.length; i++) {
-                            list[i].onclick=function () {
-                                console.log(this.getAttribute('pagenum'));
+                    //根据当前点的第几页然后发ajax给服务端获取数据展示数据到页面
+                      window.onload=function () {
+                          for (let i = 0; i < list.length; i++) {
+                              list[i].onclick = function () {
 
-                            }
-                        }
+                                      $.get('/java_thesis_project/page', {startIndex: this.getAttribute('pagenum'), pageSize: 5}, function () {
+                                          location.reload();
+                                      })
+                              }
 
+                          }
+                          let btns=document.querySelectorAll('.btn')
+
+
+
+
+                              btns[0].onclick=function () {
+                                  if (pageNum=='1'){
+                                      new $Msg({
+                                          content:'已经在第一页啦~',
+                                          type:"defeated",
+                                      })
+                                      return
+                                  }
+                                  $.get('/java_thesis_project/page', {startIndex: pageNum-1, pageSize: 5}, function () {
+                                      location.reload();
+                                  })
+
+                              }
+                             btns[1].onclick=function () {
+                                 if (is=='true'){
+                                     new $Msg({
+                                         content:'已经在最后一页啦~',
+                                         type:"defeated",
+                                     })
+                                     return
+                                 }
+                                  $.get('/java_thesis_project/page', {startIndex: parseInt(pageNum)+1, pageSize: 5}, function () {
+                                      location.reload();
+                                  })
+
+                              }
+
+                      }
 
                     </script>
+                  <li><button class="btn">下一页</button></li>
 
-
-                    <script>
-                        $('#a1').click(function () {
-                            $.get('/java_thesis_project/page',{startIndex:1,pageSize:4},function (response) {
-                                console.log(response)
-                            })
-                        })
-                    </script>
-
-                  <li><button>下一页</button></li>
                 </ul>
                 <p>当前页:<span style="color: skyblue;font-size: 20px;font-weight: 700">${sessionScope.page.pageNum}</span>,共有<span style="color: skyblue;font-size: 20px;font-weight: 700">${sessionScope.page.total}</span>条数据，共有<span style="color: skyblue;font-size: 20px;font-weight: 700">${sessionScope.page.pages}</span>页</p>
               </div>
@@ -419,12 +480,12 @@
         </div>
         <div class="am-modal-bd  up-frame-body">
          	
-         	<form method="post" class="am-form" action="index.html">
+         	<form method="get" class="am-form" action="/java_thesis_project/updateDeptServlet">
 		      <div class="login-form-div">
-		        <input type="text" name="" id="username" value="" placeholder="请输入部门名称">
+		        <input type="text" name="deptName" id="deptName" value="" placeholder="请输入部门名称">
 		      </div>
 		      <div class="login-form-div">
-		        <input type="password" name="" id="password" value="" placeholder="请输入部门地址">
+		        <input type="password" name="deptAddr" id="deptAddr" value="" placeholder="请输入部门地址">
 		      </div>
 		      <div class="am-cf login-form-div">
 		        <input type="submit" name="" style="background: #0e90d2;" value="添加" class="am-btn am-btn-primary am-btn-lg  am-btn-block am-fl">
@@ -446,13 +507,13 @@
         </div>
         <div class="am-modal-bd  up-frame-body">
          	
-         	<form method="post" class="am-form" action="index.html">
-		       <input type="text" name="id" id="" value="" placeholder="请输入部门名称">
+         	<form method="get" class="am-form"    action="/java_thesis_project/updateDeptServlet">
+
 		      <div class="login-form-div">
-		        <input type="text" name="" id="username" value="" placeholder="请输入部门名称">
+		        <input type="text" name="deptName" id="username" value="" placeholder="请输入部门名称">
 		      </div>
 		      <div class="login-form-div">
-		        <input type="password" name="" id="password" value="" placeholder="请输入部门地址">
+		        <input type="password" name="deptAttr" id="password" value="" placeholder="请输入部门地址">
 		      </div>
 		      <div class="am-cf login-form-div">
 		        <input type="submit" name="" style="color: #000" value="修改" class="am-btn am-btn-primary am-btn-lg  am-btn-block am-fl">

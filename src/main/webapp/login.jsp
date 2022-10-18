@@ -138,7 +138,7 @@
 
                                 }else {
 
-                                    location.href="dept/deptManage.jsp"
+                                    location.href="dept/index.html"
                                 }
                             }
                         }
