@@ -1,11 +1,9 @@
 package com.jgs.webServlet.pageServlet;
 
-import com.github.pagehelper.PageHelper;
 import com.jgs.pojo.Department;
 import com.jgs.service.DeptSearchService;
-import com.jgs.service.DeptSearchServiceImpl;
+import com.jgs.service.impl.DeptSearchServiceImpl;
 
-import javax.naming.Name;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;

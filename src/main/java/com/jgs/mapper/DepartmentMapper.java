@@ -31,4 +31,6 @@ public interface DepartmentMapper {
     int updateByPrimaryKeySelective(Department row);
 
     int updateByPrimaryKey(Department row);
+    //修改部门信息
+    Integer updateDeptMsg(@Param("departmentName") String deptName,@Param("departmentAddress") String deptAddress,@Param("id") Integer id);
 }

@@ -209,4 +209,8 @@
       department_eid = #{departmentEid,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <update id="updateDeptMsg">
+    update t_department set department_name=#{departmentName},department_address=#{departmentAddress}
+    where id=#{id}
+  </update>
 </mapper>

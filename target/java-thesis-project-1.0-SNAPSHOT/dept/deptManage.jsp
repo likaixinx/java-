@@ -258,10 +258,10 @@
                     <td>
                       <div class="am-btn-toolbar">
                         <div class="am-btn-group am-btn-group-xs">
-                          <button onclick="openModDlg()" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                          <button onclick="openModDlg()" deptId="${sessionScope.deptList[0].id}" class="redact am-btn am-btn-default am-btn-xs am-text-secondary">
                               <span class="am-icon-pencil-square-o"></span> 编辑
                           </button>
-                          <button onclick="crmDelete(11)" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                          <button onclick="crmDelete()" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
                               <span  class="am-icon-trash-o"></span> 删除
                           </button>
                         </div>
@@ -276,7 +276,7 @@
                       <td>
                           <div class="am-btn-toolbar">
                               <div class="am-btn-group am-btn-group-xs">
-                                  <button onclick="openModDlg(99)" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                  <button onclick="openModDlg()" deptId="${sessionScope.deptList[1].id}" class="redact am-btn am-btn-default am-btn-xs am-text-secondary">
                                       <span class="am-icon-pencil-square-o"></span> 编辑
                                   </button>
                                   <button onclick="crmDelete(11)" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
@@ -294,7 +294,7 @@
                       <td>
                           <div class="am-btn-toolbar">
                               <div class="am-btn-group am-btn-group-xs">
-                                  <button onclick="openModDlg(99)" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                  <button onclick="openModDlg()"  deptId="${sessionScope.deptList[2].id}" class=" redact am-btn am-btn-default am-btn-xs am-text-secondary">
                                       <span class="am-icon-pencil-square-o"></span> 编辑
                                   </button>
                                   <button onclick="crmDelete(11)" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
@@ -312,7 +312,7 @@
                       <td>
                           <div class="am-btn-toolbar">
                               <div class="am-btn-group am-btn-group-xs">
-                                  <button onclick="openModDlg(99)" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                  <button onclick="openModDlg()"  deptId="${sessionScope.deptList[3].id}" class="redact am-btn am-btn-default am-btn-xs am-text-secondary">
                                       <span class="am-icon-pencil-square-o"></span> 编辑
                                   </button>
                                   <button onclick="crmDelete(11)" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
@@ -330,10 +330,10 @@
                       <td>
                           <div class="am-btn-toolbar">
                               <div class="am-btn-group am-btn-group-xs">
-                                  <button onclick="openModDlg(99)" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                  <button onclick="openModDlg()" deptId="${sessionScope.deptList[4].id}" class="redact am-btn am-btn-default am-btn-xs am-text-secondary">
                                       <span class="am-icon-pencil-square-o"></span> 编辑
                                   </button>
-                                  <button onclick="crmDelete(11)" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                  <button onclick="crmDelete(11)" class=" am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
                                       <span  class="am-icon-trash-o"></span> 删除
                                   </button>
                               </div>
@@ -506,19 +506,43 @@
           <a href="javascript: void(0)" class="am-close am-close-spin" data-am-modal-close>&times;</a>
         </div>
         <div class="am-modal-bd  up-frame-body">
-         	
-         	<form method="get" class="am-form"    action="/java_thesis_project/updateDeptServlet">
 
+
+                <div class="am-form">
 		      <div class="login-form-div">
-		        <input type="text" name="deptName" id="username" value="" placeholder="请输入部门名称">
+		        <input type="text" name="deptName" autocapitalize="off" id="username" value="" placeholder="请输入部门名称">
 		      </div>
 		      <div class="login-form-div">
-		        <input type="password" name="deptAttr" id="password" value="" placeholder="请输入部门地址">
+		        <input type="text" name="deptAttr" autocapitalize="off" id="password" value="" placeholder="请输入部门地址">
 		      </div>
 		      <div class="am-cf login-form-div">
-		        <input type="submit" name="" style="color: #000" value="修改" class="am-btn am-btn-primary am-btn-lg  am-btn-block am-fl">
+		        <input type="button" name="" id="update" style="color: #000" value="修改" class="am-btn am-btn-primary am-btn-lg  am-btn-block am-fl">
 		      </div>
-		    </form>
+                </div>
+
+            <script>
+                var pageNum=`${sessionScope.page.pageNum}`
+                let id;
+                let bts=document.querySelectorAll('.redact')
+                for (let i = 0; i < bts.length; i++) {
+                    bts[i].addEventListener('click',function () {
+                       id= this.getAttribute('deptId')
+                    })
+                }
+                $('#update').click(function () {
+                    let name=document.getElementById('username')
+                    let pwd = document.getElementById('password');
+                    if (name.value==''||pwd.value==''){
+                       alert('请输入完整！！！')
+                        return
+                    }
+                    $.get('/java_thesis_project/updateDeptServlet?id='+id+"&deptName="+name.value+"&deptAttr="+pwd.value+"&pageNum="+pageNum,{},function (response) {
+                        alert(response)
+                        location.reload()
+                    })
+                })
+
+            </script>
           
         </div>
       </div>
