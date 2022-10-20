@@ -1,4 +1,4 @@
-package com.jgs.webServlet.pageServlet;
+package com.jgs.webServlet.deptServlet;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -23,14 +23,14 @@ import java.util.List;
 @WebServlet("/page")
 public class pageServlet extends HttpServlet {
    static DeptPageServiceImpl pageService = new DeptPageServiceImpl();
-    String num=null;
+   private String num=null;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
         HttpSession session = request.getSession();
-        String num = request.getParameter("num");
+        num = request.getParameter("num");
 
         if (!"1".equals(num)){
             Integer pageNum = Integer.parseInt(request.getParameter("startIndex"));
@@ -38,7 +38,7 @@ public class pageServlet extends HttpServlet {
 
 
             PageHelper.startPage(pageNum,pageSize);
-            List<Department> departments = pageService.selectAllPage(pageNum , pageSize);
+            List<Department> departments = pageService.selectAllPage();
 
             System.out.println(departments);
 
@@ -46,17 +46,19 @@ public class pageServlet extends HttpServlet {
             System.out.println(pageInfo);
             session.setAttribute("deptList", departments);
             session.setAttribute("page", pageInfo);
+            pageService.close();
             response.getWriter().write(1);
             return;
         }
         PageHelper.startPage(1,5);
-        List<Department> departments = pageService.selectAllPage(1 , 5);
+        List<Department> departments = pageService.selectAllPage();
 
 
         PageInfo<Department> pageInfo = new PageInfo<>(departments);
         System.out.println(pageInfo);
         session.setAttribute("deptList", departments);
         session.setAttribute("page", pageInfo);
+        pageService.close();
         response.getWriter().write(1);
     }
 

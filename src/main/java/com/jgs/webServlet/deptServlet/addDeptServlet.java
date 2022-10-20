@@ -1,4 +1,4 @@
-package com.jgs.webServlet.updateServlet;
+package com.jgs.webServlet.deptServlet;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -17,14 +17,14 @@ import java.io.IOException;
 import java.util.List;
 
 /**
- * @ClassName: com.jgs.webServlet.updateServlet.updateDeptServlet
+ * @ClassName: com.jgs.webServlet.deptServlet.addDeptServlet
  * @author: likaixin
- * @create: 2022年10月18日 22:13
+ * @create: 2022年10月19日 22:21
  * @description:
  */
-@WebServlet("/updateDeptServlet")
-public class updateDeptServlet extends HttpServlet {
-    private static DeptUpdateService deptUpdateService=new DeptUpdateServiceImpl();
+@WebServlet("/addDept")
+public class addDeptServlet extends HttpServlet {
+    private static DeptUpdateService service=new DeptUpdateServiceImpl();
     private static DeptPageServiceImpl pageService = new DeptPageServiceImpl();
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -33,26 +33,17 @@ public class updateDeptServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         String deptName = request.getParameter("deptName");
-        String deptAttr = request.getParameter("deptAttr");
-        String id = request.getParameter("id");
-        String pageNum = request.getParameter("pageNum");
-        System.out.println("id = " + id);
+        String deptAddr = request.getParameter("deptAddr");
+        Integer count = service.addDept(deptName, deptAddr);
 
-        Integer count = deptUpdateService.updateDeptMsg(deptName, deptAttr, Integer.parseInt(id));
-
-        PageHelper.startPage(Integer.parseInt(pageNum),5);
-        List<Department> departments = pageService.selectAllPage(Integer.parseInt(pageNum) , 5);
-
-        System.out.println(departments);
+        PageHelper.startPage(1,5);
+        List<Department> departments = pageService.selectAllPage();
 
         PageInfo<Department> pageInfo = new PageInfo<>(departments);
         System.out.println(pageInfo);
         session.setAttribute("deptList", departments);
         session.setAttribute("page", pageInfo);
-        if (count>0){
-            response.getWriter().write("修改成功");
-        }else{
-            response.getWriter().write("修改失败");
-        }
+        response.getWriter().write(count>0?"添加部门成功！":"添加部门失败！");
+
     }
 }

@@ -1,13 +1,12 @@
 package com.jgs.service.impl;
 
-import com.github.pagehelper.PageHelper;
-
 import com.jgs.Utils.SqlSessionUtils;
 import com.jgs.mapper.DepartmentMapper;
 import com.jgs.pojo.Department;
 import com.jgs.service.DeptPageService;
 import org.apache.ibatis.session.SqlSession;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -17,17 +16,19 @@ import java.util.List;
  * @description:
  */
 public class DeptPageServiceImpl implements DeptPageService {
+    private SqlSession sqlSession = null;
+
     @Override
-    public List<Department> selectAllPage(Integer startIndex,Integer pageSize) {
+    public List<Department> selectAllPage() throws IOException {
 
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
-
+        sqlSession = SqlSessionUtils.openSession();
         DepartmentMapper mapper = sqlSession.getMapper(DepartmentMapper.class);
-
-        List<Department> departments = mapper.selectAllDept();
-
-        return departments;
+        return mapper.selectAllDept();
 
 
+    }
+
+    public void close() {
+        sqlSession.close();
     }
 }

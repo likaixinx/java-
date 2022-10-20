@@ -2,6 +2,7 @@ package com.jgs.service;
 
 import com.jgs.pojo.Department;
 
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -11,5 +12,5 @@ import java.util.List;
  * @desc:
  */
 public interface DeptPageService {
-    List<Department> selectAllPage(Integer startIndex,Integer pageSize);
+    List<Department> selectAllPage() throws IOException;
 }

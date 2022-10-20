@@ -17,7 +17,7 @@ import java.util.List;
 public class DeptSearchServiceImpl implements DeptSearchService {
     @Override
     public List<Department> search(String name) {
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        SqlSession sqlSession = SqlSessionUtils.openSession();
         DepartmentMapper mapper = sqlSession.getMapper(DepartmentMapper.class);
         List<Department> departments = mapper.searchByDepartmentName(name);
         return departments;

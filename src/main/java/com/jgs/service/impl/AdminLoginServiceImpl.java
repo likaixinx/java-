@@ -15,7 +15,7 @@ import org.apache.ibatis.session.SqlSession;
 public class AdminLoginServiceImpl implements AdminLoginService {
     @Override
     public Admin selectAdmin(Admin admin) {
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        SqlSession sqlSession = SqlSessionUtils.openSession();
         AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
 
 
@@ -25,7 +25,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 
     @Override
     public Integer addAdmin(Admin admin) {
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        SqlSession sqlSession = SqlSessionUtils.openSession();
         AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
         Integer count = mapper.addAdmin(admin.getName(),admin.getPwd());
         sqlSession.commit();
@@ -35,7 +35,7 @@ public class AdminLoginServiceImpl implements AdminLoginService {
 
     @Override
     public Admin selectAdminExist(String name) {
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        SqlSession sqlSession = SqlSessionUtils.openSession();
         AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
         Admin admin = mapper.selectAdminExist(name);
         return admin;

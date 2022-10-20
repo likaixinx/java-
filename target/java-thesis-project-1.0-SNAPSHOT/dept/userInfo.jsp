@@ -291,9 +291,9 @@
           </div>
           <div class="am-g am-fl">
             <div class="up-control-btns">
-                <span class="am-icon-rotate-left"  onclick="rotateimgleft()"></span>
-                <span class="am-icon-rotate-right" onclick="rotateimgright()"></span>
-                <span class="am-icon-check" id="up-btn-ok" url="admin/user/upload.action"></span>
+                <span class="am-icon-rotate-left" style="cursor: pointer" onclick="rotateimgleft()"></span>
+                <span class="am-icon-rotate-right" style="cursor: pointer" onclick="rotateimgright()"></span>
+                <span class="am-icon-check" id="up-btn-ok" style="cursor: pointer" url="/java_thesis_project/uploadServlet"></span>
             </div>
           </div>
           

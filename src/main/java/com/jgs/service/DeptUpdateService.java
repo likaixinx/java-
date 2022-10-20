@@ -9,5 +9,10 @@ import org.apache.ibatis.annotations.Param;
  * @desc:
  */
 public interface DeptUpdateService {
+    //修改部门
     Integer updateDeptMsg( String deptName, String deptAddress, Integer id);
+    //添加部门
+    Integer addDept(String deptName, String deptAddress);
+    //删除部门
+    Integer delDeptId(Integer id);
 }

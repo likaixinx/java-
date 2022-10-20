@@ -15,7 +15,7 @@ import org.apache.ibatis.session.SqlSession;
 public class AdminForGetServiceImpl implements AdminForGetService {
     @Override
     public Admin forGetService(String name) {
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        SqlSession sqlSession = SqlSessionUtils.openSession();
         AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
         Admin admin = mapper.SelectForget(name);
         return admin;
@@ -23,7 +23,7 @@ public class AdminForGetServiceImpl implements AdminForGetService {
 
     @Override
     public Integer UpdatePasswordService(String password, String name) {
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        SqlSession sqlSession = SqlSessionUtils.openSession();
         AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
         Integer count = mapper.updatePassword(password,name);
         sqlSession.commit();
@@ -32,7 +32,7 @@ public class AdminForGetServiceImpl implements AdminForGetService {
 
     @Override
     public Admin selectOldPassword(String name, String pwd) {
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        SqlSession sqlSession = SqlSessionUtils.openSession();
         AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
          return mapper.selectOldPassword(name, pwd);
 

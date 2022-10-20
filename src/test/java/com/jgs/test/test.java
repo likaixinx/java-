@@ -21,14 +21,14 @@ public class test {
 
     @Test
     public void t1(){
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        SqlSession sqlSession = SqlSessionUtils.openSession();
         System.out.println("sqlSession = " + sqlSession);
         List<int[]> array=new ArrayList<>();
         array.add(new int[10]);
     }
     @Test
     public void t2(){
-        SqlSession sqlSession = SqlSessionUtils.getSqlSession();
+        SqlSession sqlSession = SqlSessionUtils.openSession();
         DepartmentMapper mapper = sqlSession.getMapper(DepartmentMapper.class);
         PageHelper.startPage(1, 3);//开启分页
 

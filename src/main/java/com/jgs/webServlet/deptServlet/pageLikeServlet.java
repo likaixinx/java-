@@ -1,4 +1,4 @@
-package com.jgs.webServlet.pageServlet;
+package com.jgs.webServlet.deptServlet;
 
 import com.jgs.pojo.Department;
 import com.jgs.service.DeptSearchService;

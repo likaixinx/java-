@@ -1,11 +1,6 @@
 package com.jgs.service;
 
-import com.jgs.Utils.SqlSessionUtils;
-
-
-import com.jgs.mapper.AdminMapper;
 import com.jgs.pojo.Admin;
-import org.apache.ibatis.session.SqlSession;
 
 /**
  * @ClassName: com.jgs.service.AdminForGetService
@@ -15,10 +10,9 @@ import org.apache.ibatis.session.SqlSession;
  */
 
 public interface AdminForGetService {
-  Admin forGetService(String name);
+    Admin forGetService(String name);
 
+    Integer UpdatePasswordService(String password, String name);
 
-  Integer UpdatePasswordService(String password,String name);
-
-  Admin selectOldPassword(String name,String pwd);
+    Admin selectOldPassword(String name, String pwd);
 }

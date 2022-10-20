@@ -1,12 +1,7 @@
 package com.jgs.webServlet.loginsServlet;
 
-import com.github.pagehelper.PageHelper;
-import com.github.pagehelper.PageInfo;
 import com.jgs.Utils.MD5Util;
-import com.jgs.Utils.Music;
 import com.jgs.pojo.Admin;
-import com.jgs.pojo.Department;
-import com.jgs.pojo.Page;
 import com.jgs.service.AdminLoginService;
 import com.jgs.service.impl.AdminLoginServiceImpl;
 import com.jgs.service.impl.DeptPageServiceImpl;
