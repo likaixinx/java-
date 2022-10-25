@@ -91,7 +91,7 @@
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
             <li class="am-hide-sm-only">
                 <a href="javascript:;">
-                    <img src="../images/default-head.jpg" alt="" class="am-circle am-fr" width="15%" >
+                    <img src="../images/default-head.jpg" style="float: right" alt="" class="am-circle am-fr" width="15%" >
                 </a>
             </li>
             <li class="am-dropdown" data-am-dropdown>
@@ -141,9 +141,15 @@
                             </a>
                         </li>
                         <li>
-                            <a href="empManage.jsp">
+                            <a href="empManage.jsp" id="emp">
                                 <span class="am-icon-puzzle-piece"></span>
                                 员工管理
+                            </a>
+                        </li>
+                        <li>
+                            <a href="empSalary.jsp" >
+                                <span class="am-icon-puzzle-piece"></span>
+                                员工工资管理
                             </a>
                         </li>
                         <li>
@@ -152,29 +158,10 @@
                                 加入新员工
                             </a>
                         </li>
-                        <li>
-                            <a href="empSalary.jsp">
-                                <span class="am-icon-puzzle-piece"></span>
-                                员工工资管理
-                            </a>
-                        </li>
+
                     </ul>
                 </li>
-                <li class="admin-parent">
-                    <a class="am-cf" data-am-collapse="{target: '#userInfo'}">
-                        <span class="am-icon-cog"></span>
-                        设置
-                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
-                    </a>
-                    <ul class="am-list am-collapse admin-sidebar-sub am-in" id="userInfo">
-                        <li>
-                            <a href="userInfo.jsp" class="am-cf">
-                                <span class="am-icon-check"></span>
-                                个人信息
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+
 
             </ul>
             <div class="am-panel am-panel-default admin-sidebar-panel">
@@ -318,7 +305,13 @@
 <!--     删除模态框 -->
 
 
+<script>
+    $('#emp').click(function () {
+        $.get('/java_thesis_project/empLimitServlet',{pageNum:1,pageSize:5},function () {
 
+        })
+    })
+</script>
 
 </body>
 </html>

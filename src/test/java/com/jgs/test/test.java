@@ -39,5 +39,9 @@ public class test {
         System.out.println("department = " + selectByExample);
         sqlSession.close();
     }
+    @Test
+    public void t3(){
+
+    }
 
 }

@@ -6,6 +6,7 @@ import com.jgs.service.AdminLoginService;
 import com.jgs.service.impl.AdminLoginServiceImpl;
 import com.jgs.service.impl.DeptPageServiceImpl;
 
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,7 +19,7 @@ import java.util.List;
 //登录逻辑处理
 @WebServlet("/loginServlet")
 public class loginServlet extends HttpServlet {
-    DeptPageServiceImpl pageService=new DeptPageServiceImpl();
+    private  DeptPageServiceImpl pageService=new DeptPageServiceImpl();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -71,6 +72,7 @@ public class loginServlet extends HttpServlet {
 
                 session.setAttribute("loginName",username);
                 session.removeAttribute("msg");
+
                 response.getWriter().write("跳转");
 
             }

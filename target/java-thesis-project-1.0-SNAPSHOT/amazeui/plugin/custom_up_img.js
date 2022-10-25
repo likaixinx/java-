@@ -66,9 +66,9 @@ $(function(){
     } else {
         $inputImage.prop('disabled', true).parent().addClass('disabled');
     }
+    
     //绑定上传事件
     $('#up-btn-ok').on('click',function(){
-        console.log(222)
     	var $modal = $('#my-modal-loading');
     	var $modal_alert = $('#my-alert');
     	var img_src=$image.attr("src");

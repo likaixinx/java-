@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Update;
  * @author likaixin
  * @ClassName com.jgs.dao.AdminMapper
  * @create 2022年09月29日 21:47
- * @desc:
+ * @desc: 持久层
  */
 public interface AdminMapper {
     //查询账号密码是否正确

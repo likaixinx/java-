@@ -79,7 +79,7 @@
             <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
                 <li class="am-hide-sm-only">
                   <a href="javascript:;">
-                        <img src="../images/default-head.jpg" alt="" class="am-circle am-fr" width="15%" >
+                        <img src="../images/default-head.jpg" alt="" style="float: right" class="am-circle am-fr" width="15%" >
                   </a>
                 </li>
                 <li class="am-dropdown" data-am-dropdown>
@@ -99,7 +99,7 @@
                         </script>
                     </ul>
                 </li>
-                <li class="am-hide-sm-only"><a href="javascript:;" id="admin-fullscreen"><span class="am-icon-arrows-alt"></span> </a></li>
+                <li class="am-hide-sm-only"></li>
             </ul>
         </div>
     </header>
@@ -129,7 +129,7 @@
                               </a>
                             </li>
                             <li>
-                              <a href="empManage.jsp">
+                              <a href="empManage.jsp" id="emp">
                                 <span class="am-icon-puzzle-piece"></span> 
                                 员工管理
                               </a>
@@ -148,22 +148,8 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="admin-parent">
-                        <a class="am-cf" data-am-collapse="{target: '#userInfo'}">
-                          <span class="am-icon-cog"></span> 
-                          设置
-                          <span class="am-icon-angle-right am-fr am-margin-right"></span>
-                        </a>
-                        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="userInfo">
-                            <li>
-                              <a href="userInfo.jsp" class="am-cf">
-                                <span class="am-icon-check"></span> 
-                                个人信息
-                              </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li><a href="login.html"><span class="am-icon-sign-out"></span> 注销</a></li>
+
+
                 </ul>
                 <div class="am-panel am-panel-default admin-sidebar-panel">
                     <div class="am-panel-bd">
@@ -191,22 +177,7 @@
                     
 
                     <div class="am-u-sm-12 am-u-md-6 am-u-md-push-6">
-                        <div class="am-panel am-panel-default">
-                            <div class="am-panel-bd">
-                                <div class="am-g">
-                                    <div class="am-u-md-12">
-                                        <img class="am-img-circle am-img-thumbnail" src="../images/default-head.jpg" alt="" />
-                                        <form class="am-form">
-                                            <div class="am-form-group">
-                                                <input type="file" id="user-pic" class="display-none">
-                                                <!-- <p class="am-form-help">请选择要上传的文件..</p> -->
-                                                <a id="showUpDlgBtn" class="am-btn am-btn-primary am-btn-block">头像修改</a>
-                                            </div>
-                                        </form>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
 
 
@@ -222,13 +193,7 @@
                             </div>
                             <div class="am-form-group">
                                 <div class="am-u-sm-11">
-                                	<select>
-	                               		<option>21</option>
-	                               		<option>22</option>
-	                               		<option>23</option>
-	                               		<option>24</option>
-	                               		<option>25</option>
-                                	</select>
+                                    <input type="number">
                                     <small>年龄</small>
                                 </div>
                             </div>
@@ -261,23 +226,28 @@
                             <div class="am-form-group">
                                 <div class="am-u-sm-11">
                                 	<select>
-	                               		<option value="1">人事部</option>
-	                               		<option value="1">后勤部</option>
-	                               		<option value="1">事业部</option>
-	                               		<option value="1">财务部</option>
+	                               		<option value="人事部">人事部</option>
+	                               		<option value="后勤部">后勤部</option>
+	                               		<option value="策划部">策划部</option>
+	                               		<option value="采购部">采购部</option>
+	                               		<option value="精英部">精英部</option>
+	                               		<option value="销售部">销售部</option>
+	                               		<option value="后勤部">后勤部</option>
+	                               		<option value="研发部">研发部</option>
+	                               		<option value="生产部">生产部</option>
                                 	</select>
                                     <small>所在部门</small>
                                 </div>
                             </div>
                             <div class="am-form-group">
                                 <div class="am-u-sm-11">
-                                    <textarea class="" rows="5" id="user-intro" placeholder="输入个人简介"></textarea>
+                                    <textarea class="" rows="5" id="user-intro" style="resize: none" placeholder="输入个人简介"></textarea>
                                     <small>250字以内写出你的一生..</small>
                                 </div>
                             </div>
                             <div class="am-form-group">
                                 <div class="am-u-sm-11 am-u-sm-push-3">
-                                    <button type="submit" class="am-btn am-btn-primary">修改</button>
+                                    <button type="submit" class="am-btn am-btn-primary" style="color: #000">修改</button>
                                 </div>
                             </div>
                         </form>
@@ -334,7 +304,13 @@
       </div>
     </div>
 
+       <script>
+           $('#emp').click(function () {
+               $.get('/java_thesis_project/empLimitServlet',{pageNum:1,pageSize:5},function () {
 
+               })
+           })
+       </script>
 
 </body>
 

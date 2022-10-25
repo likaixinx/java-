@@ -75,9 +75,13 @@
 <h1 style="position: absolute;left: 40%;top: 5%">  <a  id="a"  style="cursor: pointer; color:#fff;font-size: 24px;font-weight: bold;text-decoration: none">点击这查看员工啦~</a></h1>
 <script>
     $('#a').click(function () {
+        $.get('/java_thesis_project/empLimitServlet',{pageNum:1,pageSize:5},function () {
+
+        })
         $.get('/java_thesis_project/page?num=1',{},function () {
             location.href='deptManage.jsp'
         })
+
     })
 
 </script>

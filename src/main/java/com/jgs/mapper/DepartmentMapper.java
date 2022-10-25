@@ -48,4 +48,12 @@ public interface DepartmentMapper {
 
     @Select("select department_eid from t_department")
     List<Integer> selectByAllDid();
+
+    //修改头像
+    @Insert("insert into personal values(null,#{path})")
+    Integer modifyHead(@Param("path") String path);
+
+    //查头像
+    @Select("  SELECT path FROM personal ORDER BY id  desc LIMIT 1")
+    String selectHead();
 }

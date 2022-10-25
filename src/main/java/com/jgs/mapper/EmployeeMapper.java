@@ -1,30 +1,15 @@
 package com.jgs.mapper;
 
 import com.jgs.pojo.Employee;
-import com.jgs.pojo.EmployeeExample;
+
 import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
+/**
+ * @author likaixin
+ * @ClassName com.jgs.mapper.EmployeeMapper
+ * @create 2022年10月24日 21:21
+ * @desc: 持久层
+ */
 public interface EmployeeMapper {
-    long countByExample(EmployeeExample example);
-
-    int deleteByExample(EmployeeExample example);
-
-    int deleteByPrimaryKey(Integer id);
-
-    int insert(Employee row);
-
-    int insertSelective(Employee row);
-
-    List<Employee> selectByExample(EmployeeExample example);
-
-    Employee selectByPrimaryKey(Integer id);
-
-    int updateByExampleSelective(@Param("row") Employee row, @Param("example") EmployeeExample example);
-
-    int updateByExample(@Param("row") Employee row, @Param("example") EmployeeExample example);
-
-    int updateByPrimaryKeySelective(Employee row);
-
-    int updateByPrimaryKey(Employee row);
+     List<Employee> selectEmployeeAllLimit();
 }

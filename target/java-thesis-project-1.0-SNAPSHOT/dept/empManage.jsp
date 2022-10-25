@@ -36,6 +36,13 @@
 		}
 		
 	</script>
+    <style>
+        #ul>li:hover{
+            background-color: #5b6ddc;
+        }
+
+
+    </style>
 </head>
 <body>
 
@@ -91,7 +98,7 @@
             <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
                 <li class="am-hide-sm-only">
                   <a href="javascript:;">
-                        <img src="../images/default-head.jpg" alt="" class="am-circle am-fr" width="15%" >
+                        <img src="../images/default-head.jpg" alt="" style="float: right" class="am-circle am-fr" width="15%" >
                   </a>
                 </li>
                 <li class="am-dropdown" data-am-dropdown>
@@ -142,9 +149,15 @@
                             </li>
                             <li>
                               <a href="empManage.jsp">
-                                <span class="am-icon-puzzle-piece"></span> 
+                                <span class="am-icon-puzzle-piece"></span>
                                 员工管理
                               </a>
+                            </li>
+                            <li>
+                                <a href="empSalary.jsp" id="emp">
+                                    <span class="am-icon-puzzle-piece"></span>
+                                    员工工资管理
+                                </a>
                             </li>
                             <li>
                                 <a href="empAdd.jsp">
@@ -152,29 +165,10 @@
                                     加入新员工
                                 </a>
                             </li>
-                            <li>
-                                <a href="empSalary.jsp">
-                                    <span class="am-icon-puzzle-piece"></span>
-                                    员工工资管理
-                                </a>
-                            </li>
+
                         </ul>
                     </li>
-                    <li class="admin-parent">
-                        <a class="am-cf" data-am-collapse="{target: '#userInfo'}">
-                          <span class="am-icon-cog"></span> 
-                          设置
-                          <span class="am-icon-angle-right am-fr am-margin-right"></span>
-                        </a>
-                        <ul class="am-list am-collapse admin-sidebar-sub am-in" id="userInfo">
-                            <li>
-                              <a href="userInfo.jsp" class="am-cf">
-                                <span class="am-icon-check"></span> 
-                                个人信息
-                              </a>
-                            </li>
-                        </ul>
-                    </li>
+
 
                 </ul>
                 <div class="am-panel am-panel-default admin-sidebar-panel">
@@ -209,12 +203,7 @@
           </div>
         </div>
         <div class="am-u-sm-12 am-u-md-5">
-          <div class="am-input-group am-input-group-sm">
-            <input type="text" class="am-form-field">
-            <span class="am-input-group-btn">
-              <button class="am-btn am-btn-default" type="button">搜索</button>
-            </span>
-          </div>
+
         </div>
       </div>
 
@@ -225,14 +214,12 @@
             <table class="am-table am-table-striped am-table-hover table-main">
               <thead>
                 <tr>
-                  <th class="table-check">
-                    <input type="checkbox" />
-                  </th>
+
                   <th class="table-id">ID</th>
                   <th class="table-id">姓名</th>
                   <th class="table-id">年龄</th>
                   <th class="table-id">爱好</th>
-                  <th class="table-id">简介</th>
+                  <th class="table-id">简介 </th>
                   <th class="table-id">性别</th>
                   <th class="table-title">入职日期</th>
                   <th class="table-author am-hide-sm-only">所在部门</th>
@@ -241,17 +228,15 @@
               </thead>
               <tbody>
               		<tr>
-	                  <th class="table-check">
-	                    <input type="checkbox" />
-	                  </th>
-	                  <td class="table-id">ID</td>
-	                  <td class="table-id">姓名</td>
-	                  <td class="table-id">年龄</td>
-	                  <td class="table-id">爱好</td>
-	                  <td class="table-id">简介</td>
-	                  <td class="table-id">性别</td>
-	                  <td class="table-title">入职日期</td>
-	                  <td class="table-author am-hide-sm-only">所在部门</td>
+
+	                  <td class="table-id">${sessionScope.empList[0].id}</td>
+	                  <td class="table-id">${sessionScope.empList[0].employeeName}</td>
+	                  <td class="table-id">${sessionScope.empList[0].employeeAge}</td>
+	                  <td class="table-id like">${sessionScope.empList[0].employeeHobby}</td>
+	                  <td class="table-id Brief">${sessionScope.empList[0].employeeBrief}</td>
+	                  <td class="table-id">${sessionScope.empList[0].employeeSex}</td>
+	                  <td class="table-title">${sessionScope.empList[0].employeeDate}</td>
+	                  <td class="table-author am-hide-sm-only">${sessionScope.empList[0].employeeDept}</td>
                     <td>
                       <div class="am-btn-toolbar">
                         <div class="am-btn-group am-btn-group-xs">
@@ -259,36 +244,207 @@
                               <span class="am-icon-pencil-square-o"></span> 编辑
                           </a>
                           <!-- button默认类型是submit -->
-                          <button type="button" onclick="crmDelete(11)" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                          <button type="button" onclick="crmDelete()" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
                               <span class="am-icon-trash-o"></span> 删除
                           </button>
                         </div>
                       </div>
                     </td>
                   </tr>
+                    <tr>
+
+                        <td class="table-id ">${sessionScope.empList[1].id}</td>
+                        <td class="table-id ">${sessionScope.empList[1].employeeName}</td>
+                        <td class="table-id ">${sessionScope.empList[1].employeeAge}</td>
+                        <td class="table-id like">${sessionScope.empList[1].employeeHobby}</td>
+                        <td class="table-id Brief">${sessionScope.empList[1].employeeBrief}</td>
+                        <td class="table-id ">${sessionScope.empList[1].employeeSex}</td>
+                        <td class="table-title">${sessionScope.empList[1].employeeDate}</td>
+                        <td class="table-author am-hide-sm-only">${sessionScope.empList[1].employeeDept}</td>
+                        <td>
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <a href="empModify.jsp" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                        <span class="am-icon-pencil-square-o"></span> 编辑
+                                    </a>
+                                    <!-- button默认类型是submit -->
+                                    <button type="button" onclick="crmDelete()" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                        <span class="am-icon-trash-o"></span> 删除
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td class="table-id">${sessionScope.empList[2].id}</td>
+                        <td class="table-id">${sessionScope.empList[2].employeeName}</td>
+                        <td class="table-id">${sessionScope.empList[2].employeeAge}</td>
+                        <td class="table-id like">${sessionScope.empList[2].employeeHobby}</td>
+                        <td class="table-id Brief">${sessionScope.empList[2].employeeBrief}</td>
+                        <td class="table-id">${sessionScope.empList[2].employeeSex}</td>
+                        <td class="table-title">${sessionScope.empList[2].employeeDate}</td>
+                        <td class="table-author am-hide-sm-only">${sessionScope.empList[2].employeeDept}</td>
+                        <td>
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <a href="empModify.jsp" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                        <span class="am-icon-pencil-square-o"></span> 编辑
+                                    </a>
+                                    <!-- button默认类型是submit -->
+                                    <button type="button" onclick="crmDelete()" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                        <span class="am-icon-trash-o"></span> 删除
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td class="table-id">${sessionScope.empList[3].id}</td>
+                        <td class="table-id">${sessionScope.empList[3].employeeName}</td>
+                        <td class="table-id">${sessionScope.empList[3].employeeAge}</td>
+                        <td class="table-id like">${sessionScope.empList[3].employeeHobby}</td>
+                        <td class="table-id Brief">${sessionScope.empList[3].employeeBrief}</td>
+                        <td class="table-id">${sessionScope.empList[3].employeeSex}</td>
+                        <td class="table-title">${sessionScope.empList[3].employeeDate}</td>
+                        <td class="table-author am-hide-sm-only">${sessionScope.empList[3].employeeDept}</td>
+                        <td>
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <a href="empModify.jsp" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                        <span class="am-icon-pencil-square-o"></span> 编辑
+                                    </a>
+                                    <!-- button默认类型是submit -->
+                                    <button type="button" onclick="crmDelete()" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                        <span class="am-icon-trash-o"></span> 删除
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+
+                        <td class="table-id">${sessionScope.empList[4].id}</td>
+                        <td class="table-id">${sessionScope.empList[4].employeeName}</td>
+                        <td class="table-id">${sessionScope.empList[4].employeeAge}</td>
+                        <td class="table-id like">${sessionScope.empList[4].employeeHobby}</td>
+                        <td class="table-id Brief">${sessionScope.empList[4].employeeBrief}</td>
+                        <td class="table-id">${sessionScope.empList[4].employeeSex}</td>
+                        <td class="table-title">${sessionScope.empList[4].employeeDate}</td>
+                        <td class="table-author am-hide-sm-only">${sessionScope.empList[4].employeeDept}</td>
+                        <td>
+                            <div class="am-btn-toolbar">
+                                <div class="am-btn-group am-btn-group-xs">
+                                    <a href="empModify.jsp" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                        <span class="am-icon-pencil-square-o"></span> 编辑
+                                    </a>
+                                    <!-- button默认类型是submit -->
+                                    <button type="button" onclick="crmDelete()" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                        <span class="am-icon-trash-o"></span> 删除
+                                    </button>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
               </tbody>
+                <script>
+                    var brief = document.querySelectorAll('.Brief');
+
+
+                    for (let i = 0; i < brief.length; i++) {
+
+                        brief[i].style.cursor='pointer'
+
+                        brief[i].innerHTML=brief[i].innerHTML==''?brief[i].innerHTML:brief[i].innerHTML.substring(0,5)+"..."
+
+                    }
+
+                </script>
             </table>
             <div class="am-cf">
               <div class="am-fr">
-                <ul class="am-pagination">
-                  <li class="am-disabled"><a href="#">«</a></li>
-                  <li class="am-active"><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
-                  <li><a href="#">»</a></li>
+
+
+
+
+                <ul class="am-pagination" id="ul" >
+
                 </ul>
+
+
+
+                  <script>
+                      var num = `${sessionScope.empPage.pages}`
+                      var pageNum = `${sessionScope.empPage.pageNum}`
+                      var count = `${sessionScope.empPage.size}`
+                      var is = `${sessionScope.empPage.isLastPage}`
+                      console.log(is)
+                      var tbody = document.querySelector('tbody')
+                      console.log(tbody.children)
+                      //排他思想 如果等于true 说明已经是最后一页 拿到count count是这个页有多少数据
+                      //把其他干掉 留下count行
+                      if (is == 'true') {
+                          for (let i = 0; i < tbody.children.length; i++) {
+                              tbody.children[i].style.display = 'none';
+                          }
+                          for (let i = 0; i < count; i++) {
+                              tbody.children[i].style.display = 'table-row';
+                          }
+                      }
+                      console.log(pageNum)
+                      console.log(num)
+                      var ul = document.getElementById("ul")
+                      var arr = []
+                      //根据有多少页动态创建页数按钮
+                      for (let i = 0; i < num; i++) {
+
+                          arr[i] = document.createElement("li");
+                          arr[i].setAttribute('style', 'margin: 0 10px;color:#000;cursor: pointer;width:40px;height:40px;line-height:40px;text-align:center;display: inline-block;border:1px solid skyblue')
+                          arr[i].setAttribute('pageNum', i + 1)
+                          arr[i].setAttribute('class', 'sp')
+                          arr[i].innerHTML = (i + 1).toString()
+                          ul.appendChild(arr[i])
+                      }
+                      var list = document.querySelectorAll('.sp');
+                      console.log(arr)
+                      console.log(list)
+
+                      for (let i = 0; i < list.length; i++) {
+
+                          if (list[i].getAttribute('pagenum') == pageNum) {
+                              list[i].setAttribute('style', 'margin: 0 10px;color:#000;cursor: pointer;width:40px;height:40px;line-height:40px;text-align:center;background-color:skyblue;display: inline-block')
+                          }
+                      }
+                      //根据当前点的第几页然后发ajax给服务端获取数据展示数据到页面
+                      window.onload = function () {
+                          for (let i = 0; i < list.length; i++) {
+                              list[i].onclick = function () {
+
+                                  $.get('/java_thesis_project/empLimitServlet', {
+                                      pageNum: this.getAttribute('pagenum'),
+                                      pageSize: 5
+                                  }, function () {
+                                      location.reload();
+                                  })
+                              }
+
+                          }
+
+                      }
+                  </script>
               </div>
             </div>
+            <p>当前页:<span
+                    style="color: skyblue;font-size: 20px;font-weight: 700">${sessionScope.empPage.pageNum}</span>,共有<span
+                    style="color: skyblue;font-size: 20px;font-weight: 700">${sessionScope.empPage.total}</span>条数据，共有<span
+                    style="color: skyblue;font-size: 20px;font-weight: 700">${sessionScope.empPage.pages}</span>页
+            </p>
         </div>
       </div>
     </div>
 
-    <footer>
-        <hr>
-        <p class="am-padding-left">&copy; 2017 Designed by yxq</p>
-    </footer>
+
 
   </div>
   <!-- content end -->
@@ -296,10 +452,7 @@
 
 <a href="#" class="am-icon-btn am-icon-th-list am-show-sm-only admin-menu" data-am-offcanvas="{target: '#admin-offcanvas'}"></a>
 
-    <footer>
-        <hr>
-        <p class="am-padding-left">&copy; 2017 Designed by yxq</p>
-    </footer>
+
     
     
 <!--     删除模态框 -->
@@ -316,9 +469,15 @@
 	  </div>
 	</div>
 <!--     删除模态框 -->
-    
-    
-    
+
+
+    <script>
+        $('#emp').click(function () {
+            $.get('/java_thesis_project/empLimitServlet',{pageNum:1,pageSize:5},function () {
+
+            })
+        })
+    </script>
 
 </body>
 </html>

@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="../amazeui/css/admin.css">
     <link rel="stylesheet" href="../css/default.css">
     <link rel="stylesheet" href="../static/css/alert.css">
+
     <script src="../static/js/jquery-3.5.1.js"></script>
     <script src="../amazeui/js/amazeui.js"></script>
     <script src="../amazeui/js/app.js"></script>
@@ -45,9 +46,34 @@
         }
 
     </script>
-
+    <style>
+        .btn{
+            color: #222;
+            cursor: pointer;
+            outline: none;
+            text-align: center;
+            border-radius: 4px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            background-image: none;
+            transition: all .2s;
+            font-size: 14px;
+            min-width: 15px;
+            margin: -12px 2px;
+            padding: 0 13px;
+            float: left;
+            display: block;
+            height: 38px;
+            line-height: 38px;
+        }
+        .btn:hover{
+            background-color: #00a1d6;
+        }
+    </style>
 </head>
 <body>
+
+
 
 
 <header class="am-topbar am-topbar-inverse admin-header">
@@ -162,9 +188,16 @@
                             </a>
                         </li>
                         <li>
-                            <a href="empManage.jsp">
+                            <a href="empManage.jsp" id="emp">
                                 <span class="am-icon-puzzle-piece"></span>
                                 员工管理
+                            </a>
+
+                        </li>
+                        <li>
+                            <a href="empSalary.jsp">
+                                <span class="am-icon-puzzle-piece"></span>
+                                员工工资管理
                             </a>
                         </li>
                         <li>
@@ -173,29 +206,11 @@
                                 加入新员工
                             </a>
                         </li>
-                        <li>
-                            <a href="empSalary.jsp">
-                                <span class="am-icon-puzzle-piece"></span>
-                                员工工资管理
-                            </a>
-                        </li>
+
                     </ul>
                 </li>
-                <li class="admin-parent">
-                    <a class="am-cf" data-am-collapse="{target: '#userInfo'}">
-                        <span class="am-icon-cog"></span>
-                        设置
-                        <span class="am-icon-angle-right am-fr am-margin-right"></span>
-                    </a>
-                    <ul class="am-list am-collapse admin-sidebar-sub am-in" id="userInfo">
-                        <li>
-                            <a href="userInfo.jsp" class="am-cf">
-                                <span class="am-icon-check"></span>
-                                个人信息
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+
+
 
             </ul>
             <div class="am-panel am-panel-default admin-sidebar-panel">
@@ -415,7 +430,7 @@
                                     for (let i = 0; i < list.length; i++) {
 
                                         if (list[i].getAttribute('pagenum') == pageNum) {
-                                            list[i].setAttribute('style', 'background-color: skyblue;color:#000')
+                                            list[i].setAttribute('style', 'background-color: skyblue;color:#000;cursor: pointer')
                                         }
                                     }
                                     //根据当前点的第几页然后发ajax给服务端获取数据展示数据到页面
@@ -436,13 +451,7 @@
 
 
                                         btns[0].onclick = function () {
-                                            if (pageNum == '1') {
-                                                new $Msg({
-                                                    content: '已经在第一页啦~',
-                                                    type: "defeated",
-                                                })
-                                                return
-                                            }
+
                                             $.get('/java_thesis_project/page', {
                                                 startIndex: pageNum - 1,
                                                 pageSize: 5
@@ -452,13 +461,7 @@
 
                                         }
                                         btns[1].onclick = function () {
-                                            if (is == 'true') {
-                                                new $Msg({
-                                                    content: '已经在最后一页啦~',
-                                                    type: "defeated",
-                                                })
-                                                return
-                                            }
+
                                             $.get('/java_thesis_project/page', {
                                                 startIndex: parseInt(pageNum) + 1,
                                                 pageSize: 5
@@ -474,6 +477,23 @@
                                 <li>
                                     <button class="btn">下一页</button>
                                 </li>
+                                <script>
+                                    var pageNum = `${sessionScope.page.pageNum}`
+                                    var btns = document.querySelectorAll('.btn');
+                                    if (pageNum=='1'){
+                                        console.log(22)
+                                        btns[0].style.display='none'
+                                    }else{
+                                        btns[0].style.display='block'
+                                    }
+                                    var islast = `${sessionScope.page.isLastPage}`
+                                   if (islast=='true'){
+                                       btns[1].style.display='none'
+                                   }else{
+                                       btns[1].style.display='block'
+                                   }
+
+                                </script>
 
                             </ul>
                             <p>当前页:<span
@@ -635,7 +655,13 @@
     </div>
 </div>
 <!--     删除模态框 -->
+<script>
+    $('#emp').click(function () {
+        $.get('/java_thesis_project/empLimitServlet',{pageNum:1,pageSize:5},function () {
 
+        })
+    })
+</script>
 
 </body>
 </html>

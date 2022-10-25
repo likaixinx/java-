@@ -34,7 +34,7 @@ public class AdminForGetServiceImpl implements AdminForGetService {
     public Admin selectOldPassword(String name, String pwd) {
         SqlSession sqlSession = SqlSessionUtils.openSession();
         AdminMapper mapper = sqlSession.getMapper(AdminMapper.class);
-         return mapper.selectOldPassword(name, pwd);
+        return mapper.selectOldPassword(name, pwd);
 
     }
 

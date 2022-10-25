@@ -172,6 +172,23 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+  <resultMap id="EmployeeAll" type="employee">
+    <id property="id" column="id"/>
+    <result property="employeeName" column="employee_name"/>
+    <result property="employeeAge" column="employee_age"/>
+    <result property="employeeSex" column="employee_sex"/>
+    <result property="employeeDept" column="employee_dept"/>
+    <result property="employeeBrief" column="employee_Brief"/>
+    <result property="employeeHobby" column="employee_hobby"/>
+    <result property="employeeDate" column="employee_date"/>
+  </resultMap>
+  <select id="selectEmployeeAllLimit" resultMap="EmployeeAll">
+
+    select id,employee_name,employee_age,employee_hobby,employee_sex,
+      employee_dept,employee_date,employee_brief
+     from t_employee
+
+  </select>
   <update id="updateByExampleSelective" parameterType="map">
     update t_employee
     <set>

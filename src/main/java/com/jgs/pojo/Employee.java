@@ -1,5 +1,8 @@
 package com.jgs.pojo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Employee {
     private Integer id;
 
@@ -9,6 +12,7 @@ public class Employee {
 
     private String employeeHobby;
 
+
     private String employeeSex;
 
     private String employeeDept;
@@ -16,6 +20,7 @@ public class Employee {
     private String employeeBrief;
 
     private Integer employeeDid;
+    private String employeeDate;
 
     public Integer getId() {
         return id;
@@ -30,7 +35,7 @@ public class Employee {
     }
 
     public void setEmployeeName(String employeeName) {
-        this.employeeName = employeeName == null ? null : employeeName.trim();
+        this.employeeName = employeeName;
     }
 
     public Integer getEmployeeAge() {
@@ -46,7 +51,7 @@ public class Employee {
     }
 
     public void setEmployeeHobby(String employeeHobby) {
-        this.employeeHobby = employeeHobby == null ? null : employeeHobby.trim();
+        this.employeeHobby = employeeHobby;
     }
 
     public String getEmployeeSex() {
@@ -54,7 +59,7 @@ public class Employee {
     }
 
     public void setEmployeeSex(String employeeSex) {
-        this.employeeSex = employeeSex == null ? null : employeeSex.trim();
+        this.employeeSex = employeeSex;
     }
 
     public String getEmployeeDept() {
@@ -62,7 +67,7 @@ public class Employee {
     }
 
     public void setEmployeeDept(String employeeDept) {
-        this.employeeDept = employeeDept == null ? null : employeeDept.trim();
+        this.employeeDept = employeeDept;
     }
 
     public String getEmployeeBrief() {
@@ -70,7 +75,7 @@ public class Employee {
     }
 
     public void setEmployeeBrief(String employeeBrief) {
-        this.employeeBrief = employeeBrief == null ? null : employeeBrief.trim();
+        this.employeeBrief = employeeBrief;
     }
 
     public Integer getEmployeeDid() {
@@ -79,5 +84,29 @@ public class Employee {
 
     public void setEmployeeDid(Integer employeeDid) {
         this.employeeDid = employeeDid;
+    }
+
+    public String getEmployeeDate() {
+        return employeeDate;
+    }
+
+    public void setEmployeeDate(String employeeDate) {
+
+        this.employeeDate = employeeDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id=" + id +
+                ", employeeName='" + employeeName + '\'' +
+                ", employeeAge=" + employeeAge +
+                ", employeeHobby='" + employeeHobby + '\'' +
+                ", employeeSex='" + employeeSex + '\'' +
+                ", employeeDept='" + employeeDept + '\'' +
+                ", employeeBrief='" + employeeBrief + '\'' +
+                ", employeeDid=" + employeeDid +
+                ", employeeDate=" + employeeDate +
+                '}';
     }
 }
