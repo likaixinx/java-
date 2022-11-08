@@ -1,6 +1,7 @@
 package com.jgs.mapper;
 
 import com.jgs.pojo.Employee;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -12,4 +13,8 @@ import java.util.List;
  */
 public interface EmployeeMapper {
      List<Employee> selectEmployeeAllLimit();
+
+    Integer updateByPrimaryKey(Employee employee);
+
+    Integer deleteByPrimaryKey(@Param("id") Integer id);
 }

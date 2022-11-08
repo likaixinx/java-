@@ -15,11 +15,35 @@ import java.util.List;
  * @description:
  */
 public class EmployeeServiceImpl implements EmployeeService {
+    private  SqlSession sqlSession;
     @Override
     public List<Employee> selectEmployeeAllLimit() {
-        SqlSession sqlSession = SqlSessionUtils.openSession();
+        sqlSession= SqlSessionUtils.openSession();
         EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
         List<Employee> employees = mapper.selectEmployeeAllLimit();
+
         return employees;
+    }
+
+    @Override
+    public Integer modifyEmployee(Employee employee) {
+        sqlSession = SqlSessionUtils.openSession();
+        EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+        Integer count = mapper.updateByPrimaryKey(employee);
+        sqlSession.commit();
+        return count;
+    }
+
+    @Override
+    public Integer deleteByPrimaryKey(Integer id) {
+        sqlSession = SqlSessionUtils.openSession();
+        EmployeeMapper mapper = sqlSession.getMapper(EmployeeMapper.class);
+        Integer count = mapper.deleteByPrimaryKey(id);
+        sqlSession.commit();
+        return count;
+    }
+
+    public void close(){
+        sqlSession.close();
     }
 }

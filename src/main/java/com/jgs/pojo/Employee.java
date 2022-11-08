@@ -1,14 +1,13 @@
 package com.jgs.pojo;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 
 public class Employee {
     private Integer id;
 
     private String employeeName;
 
-    private Integer employeeAge;
+    private String employeeAge;
 
     private String employeeHobby;
 
@@ -21,6 +20,21 @@ public class Employee {
 
     private Integer employeeDid;
     private String employeeDate;
+
+    public Employee() {
+    }
+
+    public Employee(Integer id, String employeeName, String employeeAge, String employeeHobby, String employeeSex, String employeeDept, String employeeBrief, String employeeDate) {
+        this.id = id;
+        this.employeeName = employeeName;
+        this.employeeAge = employeeAge;
+        this.employeeHobby = employeeHobby;
+        this.employeeSex = employeeSex;
+        this.employeeDept = employeeDept;
+        this.employeeBrief = employeeBrief;
+
+        this.employeeDate = employeeDate;
+    }
 
     public Integer getId() {
         return id;
@@ -38,11 +52,11 @@ public class Employee {
         this.employeeName = employeeName;
     }
 
-    public Integer getEmployeeAge() {
+    public String getEmployeeAge() {
         return employeeAge;
     }
 
-    public void setEmployeeAge(Integer employeeAge) {
+    public void setEmployeeAge(String employeeAge) {
         this.employeeAge = employeeAge;
     }
 

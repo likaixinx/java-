@@ -174,9 +174,9 @@
                 <div class="am-panel am-panel-default admin-sidebar-panel">
                     <div class="am-panel-bd">
                         <p><span class="am-icon-bookmark"></span> 公告</p>
-                        <p>2017年5月30日 10:13:44 </p>
+
                         <hr>
-                        <p>暂无系统公告</p>
+
                     </div>
                 </div>
             </div>
@@ -240,11 +240,11 @@
                     <td>
                       <div class="am-btn-toolbar">
                         <div class="am-btn-group am-btn-group-xs">
-                          <a href="empModify.jsp" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                          <a  class="bian am-btn am-btn-default am-btn-xs am-text-secondary">
                               <span class="am-icon-pencil-square-o"></span> 编辑
                           </a>
                           <!-- button默认类型是submit -->
-                          <button type="button" onclick="crmDelete()" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                          <button type="button" onclick="crmDelete()" class="del am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
                               <span class="am-icon-trash-o"></span> 删除
                           </button>
                         </div>
@@ -264,11 +264,11 @@
                         <td>
                             <div class="am-btn-toolbar">
                                 <div class="am-btn-group am-btn-group-xs">
-                                    <a href="empModify.jsp" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                    <a  class=" bian am-btn am-btn-default am-btn-xs am-text-secondary">
                                         <span class="am-icon-pencil-square-o"></span> 编辑
                                     </a>
                                     <!-- button默认类型是submit -->
-                                    <button type="button" onclick="crmDelete()" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                    <button type="button" onclick="crmDelete()" class="del am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
                                         <span class="am-icon-trash-o"></span> 删除
                                     </button>
                                 </div>
@@ -288,11 +288,11 @@
                         <td>
                             <div class="am-btn-toolbar">
                                 <div class="am-btn-group am-btn-group-xs">
-                                    <a href="empModify.jsp" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                    <a  class="bian am-btn am-btn-default am-btn-xs am-text-secondary">
                                         <span class="am-icon-pencil-square-o"></span> 编辑
                                     </a>
                                     <!-- button默认类型是submit -->
-                                    <button type="button" onclick="crmDelete()" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                    <button type="button" onclick="crmDelete()" class="del am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
                                         <span class="am-icon-trash-o"></span> 删除
                                     </button>
                                 </div>
@@ -312,11 +312,11 @@
                         <td>
                             <div class="am-btn-toolbar">
                                 <div class="am-btn-group am-btn-group-xs">
-                                    <a href="empModify.jsp" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                    <a  class=" bian am-btn am-btn-default am-btn-xs am-text-secondary">
                                         <span class="am-icon-pencil-square-o"></span> 编辑
                                     </a>
                                     <!-- button默认类型是submit -->
-                                    <button type="button" onclick="crmDelete()" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                    <button type="button" onclick="crmDelete()" class="del am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
                                         <span class="am-icon-trash-o"></span> 删除
                                     </button>
                                 </div>
@@ -336,13 +336,32 @@
                         <td>
                             <div class="am-btn-toolbar">
                                 <div class="am-btn-group am-btn-group-xs">
-                                    <a href="empModify.jsp" class="am-btn am-btn-default am-btn-xs am-text-secondary">
+                                    <a  class=" bian am-btn am-btn-default am-btn-xs am-text-secondary">
                                         <span class="am-icon-pencil-square-o"></span> 编辑
                                     </a>
                                     <!-- button默认类型是submit -->
-                                    <button type="button" onclick="crmDelete()" class="am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
+                                    <button type="button" onclick="crmDelete()" class="del am-btn am-btn-default am-btn-xs am-text-danger am-hide-sm-only">
                                         <span class="am-icon-trash-o"></span> 删除
                                     </button>
+
+                                    <script>
+                                        var bs = document.querySelectorAll('.bian');
+                                        for (let i = 0; i < bs.length; i++) {
+
+                                            bs[i].onclick=function () {
+                                                console.log(22)
+                                                var td = this.parentNode.parentNode.parentNode;
+                                                console.log(td)
+                                                var id = td.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling;
+
+                                                document.cookie="id="+id.textContent+""
+                                                console.log( document.cookie)
+                                                location.href='empModify.jsp'
+
+                                            }
+                                        }
+
+                                    </script>
                                 </div>
                             </div>
                         </td>
@@ -464,7 +483,35 @@
 	    </div>
 	    <div class="am-modal-footer">
 	      <span class="am-modal-btn" data-am-modal-cancel>取消</span>
-	      <span class="am-modal-btn" data-am-modal-confirm>确定</span>
+	      <span class="am-modal-btn" id="que" data-am-modal-confirm>确定</span>
+            <script>
+                var pageNum = `${sessionScope.empPage.pageNum}`
+                    var bs = document.querySelectorAll('.del');
+                    for (let i = 0; i < bs.length; i++) {
+                        bs[i].addEventListener('click', function () {
+                            var b = this;
+
+                            $('#que').click(function () {
+                                var td = b.parentNode.parentNode.parentNode;
+                                console.log(td)
+                                var id = td.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling;
+                                console.log(id)
+                                $.get('/java_thesis_project/empDeleteServlet',{id:id.textContent,pageNum:pageNum},function (resp) {
+                                    alert(resp)
+                                    location.reload()
+                                })
+                            })
+
+
+                        })
+
+
+                    }
+
+
+
+
+            </script>
 	    </div>
 	  </div>
 	</div>

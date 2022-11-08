@@ -136,7 +136,7 @@
         <ul class="am-nav am-nav-pills am-topbar-nav am-topbar-right admin-header-list">
             <li class="am-hide-sm-only">
                 <a href="javascript:;">
-                    <img src="../images/default-head.jpg" alt="" class="am-circle am-fr" width="15%">
+                    <img src="../images/default-head.jpg" style="float: right" alt="" class="am-circle am-fr" width="15%">
                 </a>
             </li>
             <li class="am-dropdown" data-am-dropdown>
@@ -216,9 +216,13 @@
             <div class="am-panel am-panel-default admin-sidebar-panel">
                 <div class="am-panel-bd">
                     <p><span class="am-icon-bookmark"></span> 公告</p>
-                    <p>2017年5月30日 10:13:44 </p>
+                    <div id="msg" style="overflow: auto">
+                        暂无系统公告
+
+                    </div>
+
                     <hr>
-                    <p>暂无系统公告</p>
+
                 </div>
             </div>
         </div>

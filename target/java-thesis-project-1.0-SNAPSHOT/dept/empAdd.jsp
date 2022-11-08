@@ -155,9 +155,9 @@
                 <div class="am-panel am-panel-default admin-sidebar-panel">
                     <div class="am-panel-bd">
                         <p><span class="am-icon-bookmark"></span> 公告</p>
-                        <p>2017年5月30日 10:13:44 </p>
+
                         <hr>
-                        <p>暂无系统公告</p>
+
                     </div>
                 </div>
             </div>

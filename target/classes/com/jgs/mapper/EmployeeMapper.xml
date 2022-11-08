@@ -262,15 +262,35 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.jgs.pojo.Employee">
+
+  <update id="updateByPrimaryKey" parameterType="employee">
     update t_employee
-    set employee_name = #{employeeName,jdbcType=VARCHAR},
-      employee_age = #{employeeAge,jdbcType=INTEGER},
-      employee_hobby = #{employeeHobby,jdbcType=VARCHAR},
-      employee_sex = #{employeeSex,jdbcType=CHAR},
-      employee_dept = #{employeeDept,jdbcType=VARCHAR},
-      employee_brief = #{employeeBrief,jdbcType=VARCHAR},
-      employee_did = #{employeeDid,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
+
+    <set >
+      <if test="employeeName!=null and employeeName!=''">
+        employee_name = #{employeeName},
+      </if>
+      <if test="employeeAge!='' and employeeAge!=null">
+        employee_age = #{employeeAge},
+      </if>
+
+      <if test="employeeHobby!='' and employeeHobby!=null">
+        employee_hobby = #{employeeHobby},
+      </if>
+      <if test="employeeSex!=null and employeeSex!=''">
+        employee_sex = #{employeeSex},
+      </if>
+      <if test="employeeDept!=null and employeeDept!=''">
+        employee_dept = #{employeeDept},
+      </if>
+      <if test="employeeBrief!=null and employeeBrief!=''">
+        employee_brief = #{employeeBrief},
+      </if>
+      <if test="employeeDate!=null and employeeDate!=''">
+        employee_date = #{employeeDate}
+      </if>
+    </set>
+    where id =  #{id}
   </update>
+
 </mapper>

@@ -43,7 +43,7 @@ public class empServlet extends HttpServlet {
             session.setAttribute("empPage",pageInfo);
             System.out.println(pageInfo);
             System.out.println(employees);
-
+            employeeService.close();
         }
 
     }

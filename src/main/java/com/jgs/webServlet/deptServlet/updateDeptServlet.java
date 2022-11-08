@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 /**
@@ -26,6 +28,7 @@ import java.util.List;
 public class updateDeptServlet extends HttpServlet {
     private static DeptUpdateService deptUpdateService=new DeptUpdateServiceImpl();
     private static DeptPageServiceImpl pageService = new DeptPageServiceImpl();
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
@@ -33,26 +36,31 @@ public class updateDeptServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         String deptName = request.getParameter("deptName");
+
         String deptAttr = request.getParameter("deptAttr");
         String id = request.getParameter("id");
         String pageNum = request.getParameter("pageNum");
         System.out.println("id = " + id);
 
-        Integer count = deptUpdateService.updateDeptMsg(deptName, deptAttr, Integer.parseInt(id));
 
-        PageHelper.startPage(Integer.parseInt(pageNum),5);
-        List<Department> departments = pageService.selectAllPage();
+       if (deptName!=null&&deptAttr!=null&&id!=null&&pageNum!=null){
+           Integer count = deptUpdateService.updateDeptMsg(deptName, deptAttr, Integer.parseInt(id));
 
-        System.out.println(departments);
+           PageHelper.startPage(Integer.parseInt(pageNum),5);
+           List<Department> departments = pageService.selectAllPage();
 
-        PageInfo<Department> pageInfo = new PageInfo<>(departments);
-        System.out.println(pageInfo);
-        session.setAttribute("deptList", departments);
-        session.setAttribute("page", pageInfo);
-        if (count>0){
-            response.getWriter().write("修改成功");
-        }else{
-            response.getWriter().write("修改失败");
-        }
+           System.out.println(departments);
+
+           PageInfo<Department> pageInfo = new PageInfo<>(departments);
+           System.out.println(pageInfo);
+           session.setAttribute("deptList", departments);
+           session.setAttribute("page", pageInfo);
+
+           if (count>0){
+               response.getWriter().write("修改成功");
+               return;
+           }
+       }
+
     }
 }
